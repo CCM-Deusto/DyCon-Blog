@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Welcome to the web interface of DyCon Toolbox, the computational platform developed within the <a href='https://cmc.deusto.eus/dycon/' target='_blank'>ERC DyCon - Dynamic Control</a> project.">
+	<link rel='shortcut icon' type='image/png' href='/DyCon-Blog/favicon.png' />
+
+  <title>
+    DyCon Blog
+    
+  </title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="canonical" href="https://deustotech.github.io/DyCon-Blog/">
+
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/clean-blog.css">
+
+   <!-- Adjust Colors -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/colorscheme.css">
+
+  <!-- Pygments Github CSS -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/syntax.css">
+
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/google-search.css">
+
+
+  
+  <script src="https://deustotech.github.io/DyCon-Blog/lib/js/libgif.js "></script>
+  <script src="https://deustotech.github.io/DyCon-Blog/lib/js/rubbable.js "></script>
+
+
+  <!-- Google Fonts Raleway -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+	<!-- MathJax -->
+  <script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    },
+		TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      extensions: ["AMSmath.js", "AMSsymbols.js"],
+      Macros:{
+        norm: ["|| #1 ||",1],
+        abs: ["| #1 |",1],
+        hdots: "...",
+        RR: "\\mathbb{R}",
+        ffl: ["(d_x^2)^{#1}",1],
+        ccs: "c_{1,s}",
+        kernel: ["|x-y|^{#1}",1],
+        ue: ["#1^{\\epsilon}",1]
+      }
+    },
+    CommonHTML: {
+      styles: {
+        "@font-face /* vec */ ": {
+          "font-family": "MJX-VEC",
+          src: [
+            "url(data:application/x-font-woff;charset=utf-8;base64,",
+            "d09GRgABAAAAAARMAA0AAAAABiQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEMAAAABwA",
+            "AAAccRGLqUdERUYAAAQMAAAAJAAAACgANAAmT1MvMgAAAaAAAABJAAAAYFc5gfFjbWFwAAACAAAA",
+            "AEYAAAFKQxjlbWdhc3AAAAQEAAAACAAAAAj//wADZ2x5ZgAAAlQAAACUAAAAlIQU9HBoZWFkAAAB",
+            "MAAAADAAAAA2C748e2hoZWEAAAFgAAAAHgAAACQFXQDqaG10eAAAAewAAAAUAAAAFAYvAE9sb2Nh",
+            "AAACSAAAAAwAAAAMACgAcm1heHAAAAGAAAAAHQAAACAASQAmbmFtZQAAAugAAADxAAAB5uwlD0hw",
+            "b3N0AAAD3AAAACgAAAA34M9aEXjaY2BkYGAA4uOfgq7G89t8ZeBmfgEUYbga+icNTssClVxnOgXk",
+            "cjAwgUQBdqEMW3jaY2BkYGBu+feBgYHxCwMQMF5nYGRABawAcaQESgAAeNpjYGRgYGBlUGZgYgAB",
+            "EMnIABJzAPMZAAZZAHAAAAB42mNgYSxn/MLAysDA1MW0h4GBoQdCMz5gMGRkAooysDEzwAAjECvA",
+            "OAFprikMBxgUFCcxt/z7wMDA3MIoAFUDAwoMjACD8Qv5AAAAAfQAMgAAAAABTQAAAPoAAAH0AB14",
+            "2mNgYGBmgGAZBkYGEHAB8hjBfBYGDSDNBqQZGZgYFBQn/f8P5IPp/4/vFUHVAwEjGwOcw8gEJJgY",
+            "UAEjxIrhDACLGwmnAAAAAAAUABQAFAAUAEoAAgAyAAABwgIVAAMABwAAMxEhESUhESEyAZD+ogEs",
+            "/tQCFf3rMgGxAAEAHQIEAdcCygAiAAABNDYzMhcWFxYXFhUUBgcGBw4DIyImNTQ3IycmNTQ3ISYB",
+            "eQsJBwUFBQofCwYLKyACBwMGBAcNL6urDQ0BZxgCtggMBQQPJRQHCwkGBhYpAgkCAgsJEygBCQoH",
+            "DSYAeNqVjrGKwkAURe/EGBBUrG12CishMrFQcDuLsAi26YMOmsIMxAh+hN8i+CF+gd+y4B3zttjC",
+            "woHhncu7774HoI8rFP5eIKzQw5dwgAjfwi2McBEO6bkLtzHAr3CEnhrTqcKOpDasMCQ1HKCLWLiF",
+            "HyyFQ3puwm1oPIQjDFXfR62Ro8YeK9YzMlhsqB0qtvJ6v8rPmd3Uzkv2tihwwoHCbosTa0pryYH0",
+            "NbKjRWPB/z626Se8dsY/hSHPGeTKOnXVzuqF/reYOoln8dQk80+u9b0KR97rD9Rc4xdNXtVQI7PV",
+            "sXClNiaZGGP0B+FPMN1KMAAAAHjaY2BiAIP/zQxGDNgAKxAzMjAxMDMycSUWFeWXF2WmZ5QAAGh5",
+            "BhgAAAAB//8AAnjaY2BkYGDgA2IJBgUgycTAyMDMwAIkWcA8BgZGCAYACgIAWwAAAAEAAAAAxmW3",
+            "ygAAAADVVeemAAAAANVV7Dg=) format('woff')"
+          ].join('')
+        },
+        ".MJX-VEC": {
+          "font-family": "MJX-VEC"
+        }
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook("CommonHTML Jax Ready", function () {
+    var MML = MathJax.ElementJax.mml;
+    var fixCombiningChar = MML.mo.prototype.CHTMLfixCombiningChar;
+    MML.mo.Augment({
+      CHTMLfixCombiningChar: function (node) {
+        if (node.textContent === '\u20D7') {
+          //
+          //  Safari makes combining characters into non-combining ones when
+          //  they don't have anything to combine with; replace \vec arrow
+          //  with a non-combining one so all browsers get the same thing
+          //
+          node = node.firstChild;
+          node.firstChild.nodeValue = "\u2192";
+          node.className = "mjx-char MJX-VEC";
+          node.style.marginLeft = "-.5em";
+          node.style.paddingTop = ".45em";
+        } else {
+          fixCombiningChar.call(this,node);
+        }
+      }
+    });
+  });
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js" type="text/javascript"></script>-->
+
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+  <script src="https://deustotech.github.io/DyCon-Blog/js/clean-blog.min.js "></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128123935-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-128123935-3');
+  </script>
+  <!-- End Google Analytics -->
+
+
+
+  <!-- marKdown editor -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="/DyCon-Blog/">
+                 <img src="https://deustotech.github.io//DyCon-Blog//assets/logo_DyCon.png">
+            </a> -->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/DyCon-Blog/">Home</a>
+                </li>
+                
+                
+                    
+                        
+                    
+                                   
+                <li>
+                    <a href="/DyCon-Blog/projects/posts">Documentation</a>
+                </li>
+                
+                    
+                
+                    
+                <li>
+                        <a href="https://deustotech.github.io/DyCon-Blog/projects/search.byWP">Sitemap</a>
+                </li>
+                <li>
+                        <a href="http://cmc.deusto.eus/">Chair of Computational Mathematics</a>
+                </li>
+                
+            </ul>
+
+        
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <header class="intro-header">
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="site-heading">
+        <img class="index-img" src="https://deustotech.github.io//DyCon-Blog/assets/logo_DyCon.png" alt="" srcset="">
+        <hr class="small">
+        <p class="subheading">
+          One of the main outputs of the research conducted within the DyCon ERC Project is the development of new computational methods and tools (algorithms, tutorials, sample codes, software, numerical simulations), all of which are constantly being integrated within our computational platform.
+        </p>
+        <p class="subheading no-show" style="margin: 0;">
+          The DyCon Blog offers a higher layer of our computational platform, bringing together the work done by our team. The objective of this computational blog is to share the knowledge that was collected and obtained throughout the life cycle of the DyCon ERC Project.
+
+          <div>
+            <a href="https://www.facebook.com/deustoCCM/" class="fa fa-facebook-square" style="padding: 10px;font-size: 25px; color: #777;" width="100%"></a>
+            <a href="https://twitter.com/deustoccm" class="fa fa-twitter"         style="padding: 10px;font-size: 25px; color: #777"  width="100%"></a>
+            <a href="https://www.linkedin.com/showcase/deustoccm/" class="fa fa-linkedin-square" style="padding: 10px;font-size: 25px; color: #777"  width="100%"></a>
+            <a href="https://deustotech.github.io/dycon-toolbox-documentation/" class="fa fa-wrench" style="padding: 10px;font-size: 25px; color: #777"  width="100%"></a>
+            <a href="https://github.com/DeustoTech" class="fa fa-github" style="padding: 10px;font-size: 25px; color: #777"  width="100%"></a>
+          </div>
+          <!-- DyCon Blog offers a higher layer of the computational platform, gathering the work that is currently taking place
+          inside the DyCon team. The goal of this computational blog is to share the valuable knowledge that was collected and
+          gained throughout the DyCon ERC Project's life cycle. -->
+           <!-- TODO finish this! all of which is offered in the form of posts, in order to-->
+        </p>
+        <hr>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+<div class="col-md-10 col-md-offset-1">
+<script async src="https://cse.google.com/cse.js?cx=013800383795076514665:hik5upyg2yw"></script>
+<div class="gcse-search"></div>
+
+</div>
+</div>
+
+<div class="container">
+  <div class="col-md-10 col-md-offset-1">
+    <hr>
+    <!-- <h1 class="h1-title">Work Packages</h1> -->
+    <!-- <div class="container">
+
+      <div class="col-md-10 row">
+        
+        
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="https://deustotech.github.io//DyCon-Blog/workpackage/WP01">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>WP01</b>: Control of parameter dependent problems</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="https://deustotech.github.io//DyCon-Blog/workpackage/WP01">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="https://deustotech.github.io//DyCon-Blog/workpackage/WP02">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>WP02</b>: Long time horizon control</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="https://deustotech.github.io//DyCon-Blog/workpackage/WP02">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="https://deustotech.github.io//DyCon-Blog/workpackage/WP03">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>WP03</b>: Control under constraints</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="https://deustotech.github.io//DyCon-Blog/workpackage/WP03">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="https://deustotech.github.io//DyCon-Blog/workpackage/WP04">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>WP04</b>: Inverse design of time-irreversible models</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="https://deustotech.github.io//DyCon-Blog/workpackage/WP04">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="https://deustotech.github.io//DyCon-Blog/workpackage/WP05">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>WP05</b>: Models involving memory terms and hybrid PDE+ODE systems</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="https://deustotech.github.io//DyCon-Blog/workpackage/WP05">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="https://deustotech.github.io//DyCon-Blog/workpackage/WP06">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>WP06</b>: Finite versus infinite-dimensional dynamical systems</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="https://deustotech.github.io//DyCon-Blog/workpackage/WP06">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="https://deustotech.github.io//DyCon-Blog/workpackage/OT01">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>OT01</b>: Optimal Control in OpenFOAM</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="https://deustotech.github.io//DyCon-Blog/workpackage/OT01">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="https://deustotech.github.io//DyCon-Blog/workpackage/WP99">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>WP99</b>: Other Topics</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="https://deustotech.github.io//DyCon-Blog/workpackage/WP99">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="https://deustotech.github.io//DyCon-Blog/workpackage/DP00">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>DP00</b>: Dynamic Programming and Feedback Optimal Control</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="https://deustotech.github.io//DyCon-Blog/workpackage/DP00">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+      </div>
+    </div> -->
+
+    <hr>
+
+
+    <h1 class="h1-title">Recent Posts</h1>
+    
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP01/P0013/Graph12V40.jpg">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp01/P0013" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Averaged dynamics and control for heat equations with random diffusion </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this work we address the optimal control of parameter-dependent systems. In particular, we study the dynamics and averaged controllability properties of heat equations with random non-negative diffusivites.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/JBarcena">Jon Asier Bárcena-Petisco</a>
+          
+          - 23 November 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-primary btn-sm" style="margin-left: auto;">MATLAB</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/DP00/P0004/video4.gif">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/dp00/P0004" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Q-learning for finite-dimensional problems </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this tutorial we show how to implement the Q-learning algorithm in simple settings where the state-space and the control-space are finite. In this case, the Q-function can be represented by a table, and therefore, it belongs to a finite-dimensional vector space. We illustrate the algorithm by solving the problem of finding the shortest path between any arbitrary point in a discretized domain and a target area. We then consider the same problem in a domain affected by a potential.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/CarlosE">Carlos Esteve</a>
+          
+          - 22 October 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn btn-secondary btn-sm" style="margin-left: auto;">python</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0011/icon.gif">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp05/P0011" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Moving control strategy for memory-type equations </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      Numerical implementation of the moving control strategy for a two dimensional heat equation with memory
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Authors:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/JesusO">Jesus Oroya</a>,
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/UmbertoB">Umberto Biccari</a>
+          
+          - 20 October 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-primary btn-sm" style="margin-left: auto;">MATLAB</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP01/P0011/stateEvolution.png">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp01/P0011" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Stochastic optimization for simultaneous control </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      Simultaneous control of parameter-depending systems using stochastic optimization algorithms
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Authors:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/AnaN">Ana Navarro</a>,
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/UmbertoB">Umberto Biccari</a>,
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/EnriqueZ">Enrique Zuazua</a>
+          
+          - 03 June 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-primary btn-sm" style="margin-left: auto;">MATLAB</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP01/P0006/stateEvolutionStochN1000.jpg">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp01/P0006" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Synchronized Oscillators </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      Synchronization of coupled oscillators with the Random Batch Method
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Authors:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/UmbertoB">Umberto Biccari</a>,
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/EnriqueZ">Enrique Zuazua</a>
+          
+          - 03 June 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-primary btn-sm" style="margin-left: auto;">MATLAB</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog//assets/imgs/WP01/P0010/trajectory.gif">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp01/P0010" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> The interplay of control and deep learning </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      Deep supervised learning roughly consists in solving a discretised optimal control problem subject to a nonlinear, discrete-time dynamical system, called an artificial neural network.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/BorjanG">Borjan Geshkovski</a>
+          
+          - 30 April 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn btn-secondary btn-sm" style="margin-left: auto;">python</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0008/figures/staircase_perturbed.png">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp03/P0008" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints - Heterogeneous setting: Gene-flow. </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      This tutorial is part of the control under state constraints. We will present the main features regarding the controllability of bistable reaction-diffusion equations with heterogeneous drifts.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Authors:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>,
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/IdrissM">Idriss Mazari</a>
+          
+          - 19 April 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-danger btn-sm" style="margin-left: auto;">MATLAB-CasADi</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp03/P0009" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints - Numerical exploration of controls </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      This tutorial is part of the control under state constraints. We will simulate different control strategies to the same target by minimizing different functionals.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>
+          
+          - 04 April 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-danger btn-sm" style="margin-left: auto;">MATLAB-CasADi</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP04/P0010/ico.gif">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp04/P0010" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Inverse problem for Hamilton-Jacobi equations </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this tutorial we study the inverse design problem for time-evolution Hamilton-Jacobi equations. More precisely, for a given observation of the viscosity solution at time $T>0$, we construct all the possible initial data that could have led the solution to the observed state. We note that these initial data are not in general unique. 
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/CarlosE">Carlos Esteve</a>
+          
+          - 03 April 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-primary btn-sm" style="margin-left: auto;">MATLAB</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog//assets/imgs/WP03/P0005/figures/completepath02L12-1.png">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp03/P0005" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints - Application of the staircase method </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this tutorial, we will present how to generate admissible paths of steady states for the homogeneous reaction-diffusion equation
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>
+          
+          - 03 April 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-danger btn-sm" style="margin-left: auto;">MATLAB-CasADi</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP06/P0007/ico.gif">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp06/P0007" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> The Optimal control on the Kuramoto adaptative coupling model with DyCon Toolbox </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this DyCon Toolbox tutorial, we present how to use OptimaControl enviroment to control a consensus that models the complex emergent dynamics over a given network.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/DongnamK">Dongnam Ko</a>
+          
+          - 01 April 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-success btn-sm" style="margin-left: auto;">DyCon Toolbox</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP01/P0009/ico.png">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp01/P0009" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Simultaneous Control with DyCon Toolbox </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this tutorial we will present a simultaneous control problem in a linear system dependent on parameters. We will use the MATLAb DyCon Toolbox library.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/JesusO">Jesus Oroya</a>
+          
+          - 01 April 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-success btn-sm" style="margin-left: auto;">DyCon Toolbox</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog//assets/imgs/WP03/P0006/figures/ellipticL20DEF-1.png">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp03/P0006" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints - Barriers </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      This tutorial is part of the control under state constraints. We will show how obstructions to the state constraint controllability can appear.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>
+          
+          - 31 March 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-danger btn-sm" style="margin-left: auto;">MATLAB-CasADi</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog//assets/imgs/WP03/P0009/figures/ContrState-8.png">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp03/P0007" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      Usually, the unknowns in  reaction-diffusion models are positive by nature. Therefore, for application purposes, any control strategy proposed should preserve this positivity. This group of tutorials is devoted to the understanding of phenomena and techniques arising in reaction-diffusion control problems when  state constraints are present.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>
+          
+          - 30 March 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-danger btn-sm" style="margin-left: auto;">MATLAB-CasADi</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+        <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP06/P0008/copiaRM_01.png">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp06/P0008" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Control for a semilinear heat equation and analogies with a collective behavior model </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this tutorial we will apply the DyCon toolbox to find a control to the semi-discrete semi-linear heat equation.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>
+          
+          - 15 March 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-success btn-sm" style="margin-left: auto;">DyCon Toolbox</button>
+    
+    </div>
+
+  </div>
+</div>
+
+    
+    <h3 class="see-more"><a href="https://deustotech.github.io/DyCon-Blog/projects/posts">Check all the documentation</a></h3>
+  </div>
+</div>
+
+
+    <!-- Footer -->
+<footer>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <ul class="list-inline text-center">
+        <li style="margin-right: 50px;">
+          <img style="width: 250px;" src="/DyCon-Blog/img/logos/logo_DyCon.png " alt="">
+        </li>
+        <li style="padding-bottom: 5px;">
+          <img style="width: 230px;" src="/DyCon-Blog/img/logos/logo_CCM_subDerecha_v002.png " alt="">
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

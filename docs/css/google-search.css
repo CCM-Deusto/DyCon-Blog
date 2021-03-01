@@ -1,0 +1,43 @@
+.gsc-webResult .gsc-result {
+    margin: 20px !important;
+    padding: .5em 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.gs-webResult div.gs-visibleUrl-long, .gs-promotion div.gs-visibleUrl-long {
+    display: none !important;
+}
+
+.cse .gsc-control-cse, .gsc-control-cse {
+    font-family: 'Raleway', sans-serif !important;
+    background:none !important;
+    border: 0px solid #dae0e5 !important;
+}
+
+.gsc-control-cse .gs-spelling, .gsc-control-cse .gs-result .gs-title, .gsc-control-cse .gs-result .gs-title * {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    color: #1c2fc2 !important;
+}
+
+
+.gsc-preview-reviews, .gsc-control-cse .gs-snippet, .gsc-control-cse .gs-promotion em, .gsc-control-cse .gs-snippet, .gsc-control-cse .gs-promotion em {
+    color:#404040;
+    font-family: 'Raleway', sans-serif !important;
+    font-size: 14px !important;
+}
+
+
+.cse form.gsc-search-box, form.gsc-search-box {
+    background: #52834f url(/cse/images/look/cse_theme_shiny_form_bg.png) repeat-x top left;
+    border: 1px solid #52834f;
+    border-radius: 9px !important; 
+    width: 100%;
+    margin: 0 0 2% 0;
+    box-shadow: 0 1px 2px #999;
+    display: block;
+}
+
+.gsc-expansionArea {
+    background:none !important;
+}

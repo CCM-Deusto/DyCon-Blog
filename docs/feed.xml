@@ -1,0 +1,2011 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DyCon Blog</title>
+    <description>Welcome to the web interface of DyCon Toolbox, the computational platform developed within the &lt;a href='https://cmc.deusto.eus/dycon/' target='_blank'&gt;ERC DyCon - Dynamic Control&lt;/a&gt; project.</description>
+    <link>https://deustotech.github.io/DyCon-Blog/</link>
+    <atom:link href="https://deustotech.github.io/DyCon-Blog/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 18 Feb 2021 11:18:34 +0100</pubDate>
+    <lastBuildDate>Thu, 18 Feb 2021 11:18:34 +0100</lastBuildDate>
+    <generator>Jekyll v3.5.0</generator>
+    
+      <item>
+        <title>Averaged dynamics and control for heat equations with random diffusion</title>
+        <description>Background and motivation
+
+Let us consider the random heat equation described 
+by the following system:
+
+
+
+for $G$  a domain, $G_0\subset G$ a subdomain, 
+$f$ a control,  $y^0$  the initial configuration 
+and $\alpha$ the diffusivity coefficient, which is a positive 
+random variable with density function $\rho$.
+We have that the averaged solution of (1)
+is given by:
+
+
+
+We want to determine if, given a positive random variable 
+$\alpha$ and an initial configuration $y^0\in L^2(G)$, there 
+is some $f\in L^2((0,T)\times G_0)$ such that $\tilde y(T,\cdot)=0$.
+
+In order to illustrate the effect of averaging in
+ the dynamics, let us study the dynamics of
+(1) when $G=\mathbb R^d$ and $f=0$.
+As averaging and the Fourier transform commute, we work on the
+Fourier transform of the fundamental solution of the
+heat equation, which is given by:
+
+
+
+Consequently, the Fourier transform of the average
+of the fundamental solutions is given by:
+
+
+
+i.e. the Laplace transform of $\rho$ evaluated in $|\xi|^2t$. 
+In particular, for $r\in(0,1)$ if $\rho(\alpha)\sim_{0^+} e^{-C\alpha^{-\frac{r}{1-r}}}$
+we have that:
+
+
+
+when $|\xi|^2t\to+\infty$, which can be proved by the Laplace method.
+Thus, for those density functions 
+the averaged dynamics in $\mathbb R^d$ has a fractional nature. As it is proved in [1],
+for $G$ bounded this is also true and we have the usual controllability 
+and observability results of fractional dynamics;
+that is, (2) implies that
+the averaged unique continuation is preserved,
+but (2) preserves the null averaged observability
+if and only if $r&amp;gt;1/2$, being the threshold density functions  those
+which satisfy:
+
+
+
+Some numerical simulations
+
+Let us now illustrate the difference between several probability distributions for the diffusion through numerical simulations. For that, we recall that 
+the optimal control is given by $\varphi(t,x;\phi)1_{G_0}$, for $\varphi$ the 
+averaged solution of
+
+
+
+and $\phi$ the state which minimizes the functional:
+
+
+
+Due to the hardness of the numerical computations in higher dimensions and to get
+better illustrations we work in $d=1$, and in particular in $G=(0,\pi)$.
+We also consider $G_0=(1,2)$, $T=1$ and $y^0=\frac{1}{2}$. 
+Moreover, to illustrate the difference between diffusivities inside and 
+outside the null controllability regime, we consider $\rho=1_{(1,2)}$, which is inside,
+and $\rho=1_{(0,1)}$, which is outside.
+
+In order to numerically implement this problem, we approximate it by
+minimizing $J$ in $V_M:=\langle e_i \rangle_{i=1}^M$ 
+for ${e_i}$ the eigenfunctions of the Dirichlet Laplacian
+ and for $M\in{40,50,60}$. 
+Since $V_M$ is a finite dimensional space, computing the 
+minimum of $J$ is equivalent to solving numerically a linear system,
+which can be easily done by using any numerical computing environment
+(in our case MATLAB). We have the following illustrations:
+
+First, we illustrate in Figure 1 
+(resp. in Figure 2)
+the controls induced by the minimum of $J$ for $\rho=1_{(1,2)}$
+(resp. for $\rho=1_{(0,1)}$).
+For  $\rho=1_{(1,2)}$ the 
+sequence of controls converges, which is something that can be seen in an even 
+more clear way when $t\in[0,1/2]$. Of course, the closer the time is to $1$,
+the more slowly the punctual values of the control converges pointwise with $M$ 
+(and in $t=1$ it diverges),
+which is a well-known behaviour when
+controlling a parabolic dynamics (see, for instance,
+[2], [3] and [4]).
+ However, for $\rho=1_{(0,1)}$ the sequence of  controls 
+diverges, which is something that we can appreciate in a more 
+detailed way when $t\in[0,1/2]$.
+
+
+
+
+ 
+ 
+
+
+ 
+ 
+
+
+ 
+ 
+
+
+
+
+ Figure 1: 
+ The optimal control for  $\rho=1_{(1,2)}$ and $y^0=\frac{1}{2}$ 
+induced by the minimum of the functional $J$ in $V_{40}$, $V_{50}$
+and $V_{60}$.
+In the left column we illustrate the whole controls, whereas in the right 
+column we illustrate the controls with the time variable zoomed in $[0,1/2]$.
+
+
+
+
+
+ 
+ 
+
+
+ 
+ 
+
+
+ 
+ 
+
+
+
+
+ Figure 2: 
+ The optimal control for  $\rho=1_{(0,1)}$ and $y^0=\frac{1}{2}$ 
+induced by the minimum of the functional $J$ in $V_{40}$, $V_{50}$
+and $V_{60}$.
+In the left column we illustrate the whole controls, whereas in the right 
+column we illustrate the controls with the time variable zoomed in $[0,1/2]$.
+
+
+Next, we show in Figure 3
+the canonical prolongation of the previously obtained controls to $t=0$.
+ Again, for $\rho=1_{(1,2)}$  we have a clear convergence,
+whereas for $\rho=1_{(0,1)}$  it diverges.
+
+
+
+
+ 
+ 
+
+
+
+ Figure 3: 
+The natural extensions to $t=0$ of the controls 
+induced by the minimum of the functional $J$ in $V_{40}$, $V_{50}$ 
+and $V_{60}$ with $y^0=\frac{1}{2}$. In the left figure
+we have considered $\rho =1_{(1,2)}$ and in the right one $\rho=1_{(0,1)}$.
+
+
+Finally, we illustrate in Figure 4 the state at $t=1$
+of the respective solutions of the averaged heat equation
+ with the previously obtained controls.
+For $\rho=1_{(1,2)}$ the solution converges smoothly to $0$,
+whereas for $\rho=1_{(0,1)}$ the solution diverges.
+
+
+
+
+ 
+ 
+
+
+
+ Figure 4: 
+The state in time $t=1$ of the averaged solutions of the heat equation after
+applying the control induced by the minimum of $J$ in $V_{40}$, $V_{50}$
+and $V_{60}$ with $y^0=\frac{1}{2}$. In the left figure
+we have considered $\rho =1_{(1,2)}$ and in the right one $\rho=1_{(0,1)}$.
+
+
+Bibliography
+[1] J. A. Bárcena-Petisco, E. Zuazua,  Averaged dynamics and control for heat equations with random diffusion . Preprint https://hal.archives-ouvertes.fr/hal-02958671/
+
+[2] E. Fernández-Cara and A. Münch. Strong convergent approximations of null controls for the 1D
+heat equation. SeMA journal, 61(1):49-78, 2013.
+
+[3] R. Glowinski and J. L. Lions. Exact and approximate controllability for distributed parameter
+systems.  Acta Numer., 1:269-378, 1994.
+
+[4] A. Münch and E. Zuazua. Numerical approximation of null controls for the heat equation: illposedness
+and remedies. Inverse Probl., 26(8):085018, 2010.
+</description>
+        <pubDate>Mon, 23 Nov 2020 00:00:00 +0100</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/tutorial/wp01/P0013</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/tutorial/wp01/P0013</guid>
+        
+        
+        <category>tutorial</category>
+        
+        <category>WP01</category>
+        
+      </item>
+    
+      <item>
+        <title>Understanding Deep Learning: Neural Networks as bending manifolds</title>
+        <description>Data and classification
+Supervised Learning
+
+Consider a dataset $\mathcal{D}$ consisting on $S$ distinct points ${x_i}_{i=1}^{S}$, each of them with a corresponding value $y_i$ such that
+
+
+
+
+
+where $\epsilon _i$ is included so as to consider, in principle, noisy data.
+
+The aim of supervised learning is to recover the function $\mathcal{F}(\cdot)$ such that not only fits well in the database $\mathcal{D}$ but also generalises to previously unseen data.
+
+That is, it is inferred the existence of
+
+
+
+where
+
+
+
+being $\mathcal{F} (\cdot)$ the desired previous application, and $\mathcal{D} \subset \tilde{\mathcal{D}}$.
+
+
+
+
+
+Noisy vs. noisless data
+
+The generalised dataset $\tilde{\mathcal{D}}$ can be seen as the realisation of a random vector $(\mathbf{x}, \mathbf{y})$ generated by an unknown multivariate joint distribution between $\mathcal{X}$ and  $\mathcal{Y}$.
+
+Then, the datasets used in Supervised Learning can be seen as a finite sample of the random vector $(\mathbf{x}, \mathbf{y})$, and so the underlying joint distribution between $\mathcal{X}$ and $\mathcal{Y}$ could be in principle recovered in the limit of infinitely many samples, $\tilde{\mathcal{D}}$ .
+
+We refer to noisy data when the samples in our dataset $\mathcal{D}$ actually comes from a random vector $(\mathbf{x}, \mathbf{y})$ with a non-deterministic joint distribution, such that it is not possible to find a function $\mathcal{F}$ such that $\mathcal{F}(\mathbf{x}) = \mathbf{y}$.
+
+The aim of supervised learning, in this case, would be to find a function such that $\mathcal{F}(\tilde{x}_i) \approx \tilde{y}_i$ for almost every sample, as with respect to a given loss function.
+
+In case the data is considered to be noisless (which does not happen in most practical situations, but it makes things far simpler) then the joint distribution between $\mathcal{X}$ and $\mathcal{Y}$ of the random vector $(\mathbf{x}, \mathbf{y})$ is rather deterministic. In this case, it is possible to find a function $F$ such that $\mathcal{F}(\tilde{x}_i) = \tilde{y}_i \; \forall i$, or equivalently $\mathcal{F}(\mathbf{x}) = \mathbf{y}$.
+
+Note that, given that the probability of a collision (of having two different data-points such that $x_i = x_j$ for $i \neq j$) is practically $0$, it is in principle possible to find a function $\mathcal{F}$ such that $\mathcal{F}(x_i)=y_i \; \forall i = { 1, …  ,S }$, even in the noisy case (i.e. we may use interpolation). 
+However, the aim of Supervised Learning is to be able to generalise well to previously unseen data, $\tilde{\mathcal{D}}$, and so interpolation is not effective.
+
+Some systems are often approximated as being noisless. Since the aim of supervised learning is finding functions $\mathcal{F}$, there is always the implicit assumption that the generalised dataset $\tilde{\mathcal{D}}$ can be approximately represented by a function $\mathcal{F}$, and so the noise is expected to be small, compared to the “real data”. Distinguishing data from noise is often far a from trivial issue.
+
+The idea of working with noisy data can be recasted as a Mean-Field problem, as proposed by Weinan E. et al [2]. The idea is to control a distribution, instead of a set of points in an euclidean space. Although understanding Supervised Learning with noisless data from a Dynamical Control perspective is often enough ill-posed, considering noisy data unlocks the full theoretical experience.
+
+
+
+
+
+Binary classification
+In most cases, the data points $x_i$ are in $\mathbb{R}^{n}$. In general, $x_i \in X \; \forall i$, with $X \subset \mathbb{R}^{n}$. So as to ease the training of the models, it is usually considered $X = [-1,+1]^{n}$, with $n$ an arbitrary dimension. This is called data normalization in the Machine Learning literature.
+
+There are different supervised learning problems depending on the space $Y$ of the corresponding labels, such that $y_i \in Y$.
+If $Y$ is discrete, such that $Y = { 0, … , L-1}$, then we are dealing with the problem of classification. If $L=2$, then it is a binary classification problem.
+
+In this particular setting, the aim is to find a function $F (\cdot)$ such that it returns $0$ whenever the corresponding data point is of class $0$, and $1$ conversely. 
+Note that such a function cannot be continuous except for trivial cases, given that  the data points in $X$ cover all the space $[-1, +1]$, due to the existence of a boundary between points of class $0$ and $1$.
+
+Data, subspaces and manifolds
+
+Considering $X^0$ the subset of $X$ such that $F(\tilde{x}_i) =0 \; \; \forall \tilde{x}_i \in X^0$ and $X^1$ s.t.  $\, F(\tilde{x}_i)=1 \; \; \forall \tilde{x}_i \in X^1$, it is often useful to consider $d(X^0 , X^1) &amp;gt; \delta \in \mathbb{R}^{+}$. 
+Consider that the $x-$points in the dataset $\tilde{\mathcal{D}}$ are in $X= X^0 \cup X^1$.
+
+In this aforementioned case, it is in principle possible to find a continuous function $F(\cdot)$ such that $F(\tilde{x}_i) = \tilde{y}_i \; \forall i$ , since it does not need to be defined in the boundary (the boundary is not in $X$).
+
+The simpler case is one in which $X^0$ and $X^1$ are connected spaces.
+
+
+
+Deep Learning
+Neural Networks
+
+The problem is now how to obtain the functions $\mathcal{F}$.
+
+In classical settings, an hypothesis space is often proposed as
+
+
+
+where $\theta = { a_i }_{i=1}^{m}$ are the coefficients, ${ \psi _i}$ are the proposed functions (for example, they would be monomials if we are doing polynomial regression, sine and cosines if using Fourier, …) and the function $\phi$ is the terminal loss function, that is used to match the dimensionality of $f(x_i \; ;  \theta)$ with $y_i$; for example, in the case of binary classification, $\phi (  \cdot )$ can be chosen to be the function $sign ( \cdot )$, and so $\phi (\cdot ) : \mathbb{R} \to {0,1 }$.
+
+The function $\mathcal{F}$ correspondent to the dataset $\mathcal{D}$ is then defined as
+
+
+
+where $d ( , )$ is a distance defined by a loss function. 
+That is, it is the function in the hypothesis space that minimizes the “distance” with the target function, which connects the datapoints $x_i$ with their correspondent labels $y_i$.
+
+When using Neural Networks, the hypothesis space $\mathcal{H}$ is generated by the composition of functions, such that
+
+
+
+where $\Theta = { \theta_k }_{k=1}^{L}$ are the training weights of the network and $L$ the number of hidden layers.
+
+Multilayer perceptrons
+
+In the case of the so-called multilayer perceptrons, the functions $f^k_{\theta_k}$ are constructed as
+
+
+
+being $A^k$ a matrix,$b^k$ a vector and $\sigma \in C^{0,1}(\mathbb{R})$ a fixed nondecreasing function.
+
+Since we restrict to the case in which the number of neurons is constant through the layers, we have that $A^k \in \mathbb{R}^{d \times d}$ and $b^k \in \mathbb{R}^d$.
+
+
+
+Residual Neural Networks
+In the simple case of a Residual Neural Network (often referred to as ResNets) the functions $f_{\theta_k}^{k} (\cdot)$ are constructed as
+
+
+
+where $\mathbb{I}$ is the identity function. The parameters $\sigma$, $A^k$ and $b^k$ are equivalent to those of the multilayer perceptrons.
+
+It is sometimes convenient to numerically add a parameter $h$ to the residual block, such that
+
+
+
+being $h \in \mathbb{R}$ a scalar.
+
+
+
+Training Neural Networks
+
+The aim is to find the weights ${ A, b }$ of every layer such that the final function represented by the Neural Network minimizes a given loss function.
+
+The weights are initialized randomly, and the algorithms (i.e. gradient descent) are aimed at updating them, such that eventually the Neural Network represents a function  $\hat{F}$  such that $\hat{F} (x_i) \approx y_i \, \forall i$.
+
+
+
+Visualizing Deep Learning
+
+
+  
+    
+    
+    
+  
+  
+    
+    
+    
+  
+
+
+Classification
+
+When dealing with data classification, it is very useful to just assign a color / shape to every label, and so be able to visualize data in a lower-dimensional plot.
+
+The aim of classification is to associate different classes to different regions of the initial space,
+When using Neural Networks, the initial space $X$ is propagated by the Neural Network as $f ^L \circ  f^{L-1} \circ … \circ f^1 (X)$. 
+Then the function $\phi$ would be the one in charge of associating different classes to different regions, but the functions $\phi$ are pretty simple (essentially linear separators)!
+
+So, while it may be difficult to classificate the datapoints in the initial space $X$, the Neural Networks should make things simpler and just propagate the data so as to make it linearly separable (and we would see this in real action!).
+
+Neural Networks as homeomorphisms
+
+Lemma 1.1
+A Neural Network represents a continuous function if each one of its blocks are continuous.
+
+Lemma 1.2 
+A Neural Network represents a bijection if each one of its blocks are bijective.
+
+These come trivially from the fact that the composite of continuous functions is continuous, and that the composite of bijections is a bijection.
+
+Theorem 1 (Sufficient condition for invertible ResNets [1]):
+
+Let $\hat{\mathcal{F}} \, : \, \mathbb{R}^{d} \rightarrow \mathbb{R}^{d}$ with $\hat{\mathcal{F}} (\cdot ) = ( L^{1}_{\theta} \, \circ … \circ \, L^{T}_{\theta}  )$ denote a ResNet with blocks defined by 
+
+
+Then, the ResNet $\hat{\mathcal{F}}_{\theta}$ is invertible if
+
+
+
+Proof 
+Consider that each block of the ResNet is given by
+
+
+
+where $x$ is the input of the block, and $G(x)$ given by the residual block.
+That can be rewritten as
+
+
+
+We can construct the inverse function of the block as
+
+
+
+Which is not an explicit inverse, since $g(x)$ depends on $x$. Approximating the solution as an interation,
+
+
+
+where $\lim_{k \to \infty} x_t ^{k} = x_t$ if the iteration converges. 
+Since $g(\cdot) : \mathbb{R}^{d} \to \mathbb{R}^{d}$ is an operator on a Banach space, due to the Banach fixed point theorem is it enough that $Lip(g) &amp;lt; 1$, or equally that $Lip(h\cdot G) &amp;lt;1$ for the iteration to converge, and so for the block of the ResNet to be invertible. [1]
+
+Comment: In the limit $h \to 0$, and $G(x)$ Lipschitz, we have a trivial explicit expression of the inverse of the function represented by the ResNet.
+
+Consider the ResNet as generated by the iteration of blocks
+
+
+
+where $G(x)$ is generated by a residual block . We consider $G(x)$ Lipschitz.
+
+Then,
+
+
+
+is an second order approximation of the inverse function of $Z$ in terms of $h$, since
+
+
+
+
+
+
+
+Indeed, if we express the residual blocks as
+
+
+
+the limit $h\to 0$ can be recasted as
+
+
+
+and, since the discrete index $t$ becomes continuous in this limit, it is useful to express it as
+
+
+
+where in this case we make explicit the dependence of $G$ on $t$, that was hidden in the previous notation.
+
+
+
+
+  
+    
+    
+  
+
+
+Setup
+
+Consider a binary classification problem with noisless data, such that
+
+
+
+
+
+
+  
+    
+    
+  
+  
+    
+    
+  
+
+
+
+
+
+  
+    
+    
+  
+  
+    
+    
+  
+
+
+
+
+
+  
+    
+    
+  
+
+
+
+
+
+  
+    
+    
+  
+  
+    
+    
+  
+
+
+
+
+Open questions, issues and perspectives
+
+
+
+References
+
+[1] J. Behrmann, W. Grathwohl, R. T. Q. Chen, D. Duvenaud, J. Jacobsen (2018).  Invertible Residual Networks pdf
+
+[2] Weinan E, Jiequn Han, Qianxiao Li, (2018).  A Mean-Field Optimal Control Formulation of Deep Learning. volume 6. Research in the Mathematical Sciencespdf
+
+[3] S. Shalev-Shwartz, S. Ben-David,  The Understanding Machine Learning: From Theory to Algorithms . pdf
+
+[4] B. Hanin, (2018).  Which Neural Net Architectures Give Rise to Exploding and Vanishing Gradients?   pdf
+
+[5] C. Olah,  Neural Networks, Manifolds and Topology . blog post
+
+[6] G. Naitzat, A. Zhitnikov, L-H. Lim, (2020).  Topology of Deep Neural Networks  pdf
+
+[7] Q. Li, T. Lin, Z. Shen, (2019).  Deep Learning via Dynamical Systems: An Approximation Perspective pdf
+
+[8] B. Geshkovski,  The interplay of control and deep learning . blog post
+
+[9] C. Fefferman, S. Mitter, H. Narayanan,  Testing the manifold hypothesis . pdf
+
+[10] R. T. Q. Chen, Y. Rubanova, J. Bettencourt, D. Duvenaud, (2018).  Neural Ordinary Differential Equations  pdf
+
+</description>
+        <pubDate>Sun, 01 Nov 2020 00:00:00 +0100</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/pretutorial/wp99/P0011</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/pretutorial/wp99/P0011</guid>
+        
+        
+        <category>pretutorial</category>
+        
+        <category>WP99</category>
+        
+      </item>
+    
+      <item>
+        <title>ResNet stabilization in MNIST dataset</title>
+        <description>
+MNIST dataset
+Consideramos el problema de clasificación MNIST. Este problema tiene  datos de entrada tal que $x \in \mathcal{M}_{28 \times 28}(\mathbb{R})$ y datos de salida  tal que $y \in  \mathbb{R}^{10}$. Los elementos de la base canónica de $\mathbb{R}^{10}$, $ \{e_1,e_2,\dots,e_{10}\} $, representa el conjunto de dígitos $ \{0,1,2,\dots,8,9 \}$ en ese orden.
+
+
+Figura 1. Distintos datos de entrada $x \in \mathcal{M}_{28 \times 28}(\mathbb{R})$ y sus correspondientes datos de salida $y \in  \mathbb{R}^{10}$ en la parte superior de cada una.   
+
+2. Modelo
+Buscamos una función $f_{\Omega}: \mathcal{M}_{28 \times 28}(\mathbb{R}) \rightarrow \mathbb{R}^{10}$ que sea capaz de reproducir el comportamiento que vemos en los datos. Consideraremos el modelo $\color{red}{y} = f_\Omega (\color{green}{x})$ como:
+
+
+
+Donde:
+
+  $\{z_t\}_{t=0}^{T} \in \mathbb{R}^n \ / \ n &amp;lt; 28^2$.
+  $\mathcal{P} \in \mathcal{M}_{n\times 10}$ es una matriz constante que proyecta el estado $z_t \in \mathbb{R}^n$ a $\mathbb{R}^{10}$
+  Las variables $\Omega = \{ A_t,b_t\}_{t=0}^T$ pueden verse como variables de control del sistema (\ref{sys}).
+  $A_0 \in \mathcal{M}_{28^2 \times n}(\mathbb{R})$ y $b_0 \in \mathbb{R}^{28^2}$; mientras que $ \{A_t\}_{t=1}^{N} \in \mathcal{M}_{n \times n}(\mathbb{R}) $ y los siguientes $b_t$ bias son $ \{b_t\}_{t=1}^N \in \mathbb{R}^n $
+
+
+
+Figura 2. Arquitectura de la red 
+
+3. Problema de Control
+Si llamamos $M$ al número total de datos de entrenamiento y considerando los datos de entrenamiento $\{ x_m,y_m\}_{m=1}^M$, podemos plantear el siguiente problema de control.
+
+
+
+4. Resultados numéricos
+
+
+Figura 3. Comportamiento de la proyección $\mathcal{P}z_t$ para un dado de entrada concreto. 
+
+
+Figura 4. Evolución  $||\mathcal{P}z_t||_{L^2}^2$ para los distintos datos de entrada $x$ 
+
+</description>
+        <pubDate>Thu, 29 Oct 2020 00:00:00 +0100</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/tutorial/wp02/P0005</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/tutorial/wp02/P0005</guid>
+        
+        
+        <category>tutorial</category>
+        
+        <category>WP02</category>
+        
+      </item>
+    
+      <item>
+        <title>Q-learning for finite-dimensional problems</title>
+        <description>Reinforcement Learning
+
+Reinforcement Learning (RL) is, together with Supervised Learning and Unsupervised Learning, one of the three fundamental learning paradigms in Machine Learning. The goal in RL is to enhance the manipulation of a controlled system by using data from past experiments. It differs from supervised learning and unsupervised learning because the algorithms are not trained with a fixed sampled dataset. Rather, they learn through trial and error.
+
+In a generic RL problem, an agent, or decision maker, interacts with an unknown environment which is influenced and evolves according to the controls, or actions, that are chosen by the agent. The control chosen in each situation is then evaluated by means of a reward signal. Based on the experience acquired in previous trials, the algorithm has to learn what actions are better in each situation, in the sense that the accumulated long-time reward is maximized.
+
+An optimal control problem
+
+From a mathematical viewpoint, we can see RL as an optimal control problem. The environment is described through a dynamical system of the form
+
+
+
+At each time-step, $x_t$ represents the state of the environment, which evolves according to the function $f: \mathbb{R}^n\times \mathcal{U} \to \mathbb{R}^n$. This function might be unknown by the agent, and depends on the current state $x_t$ and the control $u_t$ chosen by the agent. This choice is then evaluated by a reward $r_t = r(x_t,u_t)$.
+
+The reward function $r: \mathbb{R}^n\times \mathcal{U}\to \mathbb{R}$ has to be designed in such a way that the desired behavior of the system is stimulated by providing greater rewards. It is important to note that the choice of $u_t$ not only affects the reward $r_t$. It also affects the future rewards as they will depend on future states of the system. The goal in RL is not to maximize the reward $r_t$ at each time-step, but rather to maximize the reward accumulated during a certain interval of time.
+
+The optimal control problem that we are considering consists in maximizing, over the control strategy, the rewards accumulated during a process of infinite length
+
+
+
+The parameter $\gamma \in (0,1)$ is called a discount factor, and ensures that the sum of rewards over the time-steps is finite. This is the so-called discounted infinite-horizon problem. In many applications, the introduction of the discount factor is also motivated by the fact that the rewards obtained in the near future are considered to be more important than those obtained with a bigger delay.
+
+It is to be pointed out that this general setting is not exhaustive, and other classes of optimal control problems can be considered in the application of RL techniques. For example, it is typical to consider stochastic dynamics,  which is very suitable when the environment is considered to be unknown, or is subject to changes that we cannot control. The reward functional (2) can also have a different form (finite-time horizon, terminal reward, no discount factor,…). Although the discrete-time setting is the most common in RL, continuous-time problems can also considered.
+
+The value function
+
+The probably most important element in Reinforcement Learning is the optimal value function, defined as
+
+
+
+It represents the best total reward that one can expect if the initial state is $x$. The value function satisfies the following Dynamic Programming Principle, also known as Bellman equation.
+
+
+
+It allows the design of an optimal control in a feedback form.
+
+
+
+The $Q$-function
+
+In view of (3), we can construct a nearly optimal feedback control by approximating the value function $V^\ast$. But even if we were able to exactly compute the value function, the feedback law given in (3) makes use of the dynamics $f$. This means that the choice of the optimal control at a given state relies on the possibility of making predictions of what will be the next state, and as we mentioned, it is not in general the case in RL.
+
+Therefore, rather than approximating the value function, we may concentrate our efforts on approximating the $Q$-function, defined as
+
+
+
+It represents the best total reward that we can expect if the initial state is $x$ and the first control taken is $u$.
+
+Observe that the optimal value function $V^\ast(x)$ determines how good is to be at a certain state $x$, whereas the function $Q(x,u)$ determines the quality of choosing $u$ given that the current state is $x$.
+
+The $Q$-function allows the design of an optimal feedback control without using the dynamics $f$.
+
+
+
+Using the identity $V^\ast (x) = \max_{u\in \mathcal{U}} Q(x,u)$, we can deduce the Bellman equation for the $Q$-function.
+
+
+
+$Q$-learning
+
+$Q$-learning is a RL algorithm, introduced by Watkins in 1989, that seeks to approximate the $Q$-function by exploring the state-control space $\mathbb{R}^n\times \mathcal{U}$. The exploration is made by running experiments of finite time-steps considering a randomized initial state. At each step, the approximation of the $Q$-function is improved by using the Dynamic Programming equation (4). During the learning process, an $\varepsilon$-greedy policy with respect to the current approximation of $Q$ is used. This policy ensures the exploration of the whole state-control space at the same time that it exploits the information obtained in previous experiments to enhance the approximation of $Q$ in regions that seem to be better in terms of total reward.
+
+These are the main steps in the $Q$-learning algorithm.
+
+  Initialize an arbitrary $Q$-function, $\widehat{Q}_0(x,u)$.
+  Run a number $N$ of experiments (episodes) of $T$ steps each one.
+  In total there will be $N\, T$ number of steps.
+  $\varepsilon$-greedy policy:
+
+
+
+
+and $u_k$ is chosen randomly with probability $\varepsilon$ (exploration vs exploitation).
+
+
+  Improvement of $\widehat{Q}(x_t, u_t)$: after each time-step, we use the observed $(x_{t+1}, r_t)$ to improve the approximation of $Q(x_t,u_t)$ in the following way
+
+
+
+
+here, $\alpha&amp;gt;0$ is called the learning rate.
+
+
+
+
+ 
+  
+
+
+
+ Figure 1.
+
+
+
+
+Example
+
+We illustrate the $Q$-learning algorithm through a simple example. In a given two-dimensional discrete domain, we consider the problem of finding the shortest path between any position of the domain and a prescribed target area.
+
+Let us first define the environment. We consider a discretized rectangular domain:
+
+
+
+We want to find the shortest path between any starting position in the domain and the top center of the domain, white area in the video below. The position can be moved, at each time-step, one unit up, down, right or left, i.e. the underlying dynamics are given by
+
+
+
+where $\tau$ is the first time the state reaches the limits of the domain. The experiment is considered a success if the terminal position is in the target area, and a defeat otherwise. The possible controls are
+
+
+
+We denote by $\partial \Omega$ the limits of the domain (blue squares in the video), i.e.
+
+
+
+We denote by $\mathcal{T}$ the target area (white squares)
+
+
+
+Now we need to define a reward that makes the agent move the position from the initial one $x$ to the target area in the minimum number of steps, without reaching the limits of the domain.
+
+
+
+Giving a negative reward when $x_t\in \Omega$ stimulates the agent to take the minimum possible number of steps until the target area.
+
+Since the state-space $\Omega$ and the set of possible actions $\mathcal{U}$ are both finite. The $Q$-function can be represented by a table with $40\times 40$ rows and $4$ columns. The entries in this table can be learned from experiments using the $Q$-learning algorithm described above. Once we have a good approximation of $Q$, for a given position $x$, we can determine the best possible action by looking at the corresponding row in the table and taking the action corresponding to the minimum value in that row.
+
+In the following video we see the obtained behavior after applying the $Q$-learning algorithm with 10000 experiments, with a discount factor $\gamma =0.9$, learning rate $\alpha =0.9$ and an $\varepsilon-$greedy policy with $\varepsilon = 0.9$.
+The plot represents the evolution of the success rate with the number of experiments during the training.
+
+
+
+
+ 
+ 
+
+
+ Figure 2a.
+Figure 2b.
+
+
+
+
+We can change the environment by adding a potential that moves the position to the right when it is in a certain region (dark green area)
+
+
+
+In the new environment, the agent do not know how to get to the target area.
+
+In the following video, the agent uses the $Q$-function obtained in the original environment. However, the new dynamics are given by
+
+
+
+
+
+
+ 
+
+
+ Figure 3.
+
+
+
+
+After training the $Q$-function in the new environment, it learns how to deal with the potential to get to the target area. Observe that the success rate never reaches one. This is due to the fact that there is a region in the domain (the dark green area near the right-hand limit of the domain) from which it is impossible to reach the target.
+
+
+
+
+
+
+
+
+ Figure 4a.
+Figure 4b.
+
+
+
+
+We can also add obstacles in the domain, or even combine obstacles with a potential.
+
+
+
+
+
+
+
+
+ Figure 5a.
+Figure 5b.
+
+
+
+
+</description>
+        <pubDate>Thu, 22 Oct 2020 00:00:00 +0200</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/tutorial/dp00/P0004</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/tutorial/dp00/P0004</guid>
+        
+        
+        <category>tutorial</category>
+        
+        <category>DP00</category>
+        
+      </item>
+    
+      <item>
+        <title>Moving control strategy for memory-type equations</title>
+        <description>This tutorial shows how to implement the moving control strategy for the heat equation in the presence of a memory term.
+
+The standard null controllability problem for the heat equation reads as follows
+
+
+
+where $\Omega$ is a bounded domain, $u_0\in L^2(\Omega)$ and the control $f$ acts on the subdomain $\omega\subset\Omega$. The objective is to steer the system from $u_0$ to zero in time $T$,
+
+It is known that the null controllability of the heat equation holds in any positive time $T&amp;gt;0$ and for any open control region $\omega$. Nevertheless, the situation changes when in the model appears a memory term:
+
+
+
+As a matter of fact, when the equation involes a memory term, it is impossible to achive null controllability in the classical sense, unless the control region coincides with the entire domain ($\omega=\Omega$).
+
+This fact can be easily seen when applying a LQR control on both systems (\ref{heatinterior}) and (\ref{heatinterior_memory}). In the former case (without memory) the minimum of the LQR functional is an optimal control stabilizing the dynamics (Video 1), whereas when the memory enters into the model this minimum leaves the system far from the equilibrium (Vdeo 2).
+
+
+
+
+    
+        
+          
+             
+           
+        
+        
+          
+             
+           
+        
+    
+    
+        
+          
+              Video 1: LQR in the heat equation (Equation \ref{heatinterior})
+           
+        
+        
+          
+              Video 2:  LQR in the heat equation with memory (Equation \ref{heatinterior_memory})
+           
+        
+     
+    
+        
+          
+              We can see the time evolution of the two models with a control region, $\chi_{\omega}$, located in the position of the blue ellipsoid in the simulation. We observe that the LQR control is effective for the heat equation but not for the heat equation with memory.
+           
+        
+     
+
+
+To understand the reason behind the lack of null controllability for the memory-type equation (\ref{heatinterior_memory}), we can introduce the new variable
+
+
+
+In this way, (\ref{heatinterior_memory}) is transformed into a coupled PDE/ODE system:
+
+
+
+In (\ref{heatinterior_memory_z}), the equation $z_t = u$ is an infinte-dimensional ODE which, since it has no diffusion term, introduces non-propagation phenomena in the system. The non propagating components corresponding to this ODE are unable to reach the control region $\omega$ and, therefore, cannot be controlled.
+
+A natural remedy to this issue is to operate with a moving control strategy. If the ODE components of the system cannot reach the control region $\omega$, then is the control region who needs to reach these components. Hence, our control region would be  function of the time variable, $\omega = \omega(t)$, and the corresponding model will be
+
+
+
+This moving control strategy has been proposed and succesfully applied in several contributions of our team [1,2,3,4].
+
+Memory-type equations are one of the core topics of WP5 of the DyCon ERC project. An abridged presentation of this working package can be found at the following link.
+
+Numerical implementation of the moving control strategy
+
+We present here the numerical implementation of the moving control strategy for the memory-type heat equation (\ref{heatinterior_memory_z_moving}). All the simulations will be in $2D$.
+
+STEP 1: construction of the control region
+
+The first step is to construct the moving control region $\omega(t)$, which requires to design the function $\chi_{\omega(t)}$. To this end, we made the assumption that the size and orientation of $\omega(t)$ do not change during the time interval $[0,T]$. Hence, once fixed the size and shape of the control region, we will obtain a function depending only on a point $x\in \Omega$.
+
+In this simulation, we create the control region as a square which moves in the domain $\Omega$. This square can be constructed with a function $W(x)$ defined as
+
+
+
+where $H(x)$ is the Heaviside function. Nevertheless, the function $W$ constructed in this way would be non-differentialbe at the points $x=a$ and $x=b$. This would represent a problem when implementing the gradient method to compute the control. To bypass this issue, in the definition of $W(x,a,b)$ we will use a smooth approximation of $H$ (See Figure 1).
+
+
+  
+    
+      
+    
+  
+  
+    
+      Figure 1: Graphicla representation of $W(x,a,b)$
+    
+  
+
+
+Moreover, the generalization of this function to dimension two is immediate
+
+
+
+In this way, given $(x_{min}, x_{max}, y_{min}, y_{max})$, we obtain the corresponding characteristic function which only depends on the position of a single point.
+
+STEP 2: construction of the dynamics
+
+Since $\chi_{\omega}$ can move and, moreover, we want to obtain the optimal trajectory for the control, we will incorporate in our system a moving particle whose position and velocity are denoted by $\textbf{d} = (d_x,d_y)$ and $\textbf{v} = (v_x,v_y)$, respectively (Video 3).
+
+
+  
+    
+       
+    
+  
+  
+    
+      Video 3: Representación gráfica de  $W_{2D}$
+    
+  
+
+
+Besides, we will add a control $\textbf{g}(t) = (g_x(t),g_y(t))$ which will act as an exterior force moving the subset $\chi_{\omega}$.
+
+In this way, our model takes the final form
+
+
+
+STEP 3: optimal control problem
+
+Following a standard optimal control strategy, the control function for our memory-type equation will be computed throught the minimization problem
+
+
+
+
+
+Simulations
+
+All the simulations in this tutorial have been performed using the DyCon Toolbox and CasADi. Since CasADi is incorporated into the DyCon toolbox, we can install it in the following way:
+
+unzip('https://github.com/DeustoTech/DyCon-Computational-Platform/archive/master.zip')
+addpath(genpath(fullfile(cd,'DyCon-toolbox-master'))
+StartDyconPlatform
+
+
+
+We shall now write the discrete version of equation (\ref{heatinterior_memory_z_all}):
+
+
+
+Secondly, let us create the mesh variable
+
+% Create the mesh variables
+clear;
+Ns = 7;
+Nt = 15;
+xline = linspace(-1,1,Ns);
+yline = linspace(-1,1,Ns);
+[xms,yms] = meshgrid(xline,yline);
+
+
+
+and the matrix $A$ containing the $2D$ Laplacian and the ODE dynamics
+
+A  = FDLaplacial2D(xline,yline);
+
+Atotal = zeros(2*Ns^2+4,2*Ns^2+4);
+%
+Atotal( 1:Ns^2  , 1:Ns^2 ) = A;
+%
+Atotal( Ns^2+1 : 2*Ns^2   ,   1    :  Ns^2   )  =  eye(Ns^2);
+Atotal(    1   :  Ns^2    , Ns^2+1 : 2*Ns^2  )  =  50*eye(Ns^2); % z = 50*y
+
+RumbaMatrixDynamics = [0 0 1 0; ...
+                       0 0 0 1; ...
+                       0 0 0 0; ...
+                       0 0 0 0 ];
+
+Atotal(2*Ns^2+1:end,2*Ns^2+1:end) = RumbaMatrixDynamics;
+Atotal = sparse(Atotal);
+
+
+
+Finally, we create the function $B(\textbf{d}) = B(x_d,y_d)$ for the dynamics of the moving control
+%%
+% We create the B() function
+xwidth = 0.3;
+ywidth = 0.3;
+B = @(xms,yms,xs,ys) WinWP05(xms,xs,xwidth).*WinWP05(yms,ys,ywidth);
+Bmatrix =  @(xs,ys) [diag(reshape(B(xms,yms,xs,ys),1,Ns^2)) ;zeros(Ns^2)];
+
+
+
+We now have everything we need to construct and solve the optimal control problem
+
+opti = casadi.Opti();  % CasADi optimization structure
+
+% ---- Input variables ---------
+Ucas = opti.variable(2*Ns^2+4,Nt+1); % state trajectory
+Fcas = opti.variable(Ns^2+2,Nt+1);   % control
+
+% ---- Dynamic constraints --------
+dUdt = @(y,f) Atotal*u+ [Bmatrix(u(end-3),u(end-2))*f(1:end-2) ; ...
+                                         0                     ; ...
+                                         0                     ; ...
+                                     f(end-1)                  ; ...
+                                     f(end)                    ]; 
+
+% -----Euler backward method-------
+for k=1:Nt % loop over control intervals
+   y_next = Ucas(:,k) + (T/Nt)*dUdt(Ucas(:,k+1),dUdt(:,k+1)); 
+   opti.subject_to(Ucas(:,k+1)==y_next); % close the gaps
+end
+
+% ---- State constraints --------
+opti.subject_to(Ucas(:,1)==[Y0 ; 0.7 ; 0.7; -1.5 ; -1.5]);
+
+% ---- Optimization objective  ----------
+Cost = (Ucas(1:end-4,Nt+1))'*(Ucas(1:end-4,Nt+1));
+
+opti.minimize(Cost); % minimizing L2 at the final time
+
+% ---- initial guesses for solver ---
+opti.set_initial(Ucas, Unum_free);
+opti.set_initial(Fcas, 0);
+
+% ---- solve NLP              ------
+p_opts = struct('expand',false);
+s_opts = struct('acceptable_tol',1e-4,'constr_viol_tol',1e-3,'compl_inf_tol',1e-3);
+opti.solver('ipopt',p_opts,s_opts); % set numerical backend
+tic
+sol = opti.solve();   % actual solve
+toc
+
+
+
+The following video shows the results of our simulations, which allowed to compute an effective moving control steering the dynamics to rest at time $T$.
+
+
+
+  
+    
+       
+    
+  
+
+
+
+Video 3
+
+
+
+
+Bibliography
+
+[1] U. Biccari and S. Micu, Null-controllability properties of the wave equation with a second order memory term, J. Differential Equations, 267(2), 2019, 1376-1422.
+
+[2] U. Biccari and M. Warma, Null-controllability properties of a fractional wave equation with a memory term, Evol. Eq. Control The., 9(2), 2020, 399-430.
+
+[3] F. W. Chaves-Silva, X. Zhang and E. Zuazua, Controllability of evolution equations with memory, SIAM J. Control Optim., 55(4), 2017, 2437–2459.
+
+[4] Q. Lü, X. Zhang and E. Zuazua, Null controllability for wave equations with memory, J. Math. Pures Appl., 108 (4), 2017, 500-531.
+</description>
+        <pubDate>Tue, 20 Oct 2020 00:00:00 +0200</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/tutorial/wp05/P0011</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/tutorial/wp05/P0011</guid>
+        
+        
+        <category>tutorial</category>
+        
+        <category>WP05</category>
+        
+      </item>
+    
+      <item>
+        <title>Optimal Control Problem vs  Classification Problem in DyCon Toolbox</title>
+        <description>En este tutorial veremos como podemos implementar un problema de clasificación simple mediante la librería de control óptimo DyCon-Toolbox.
+
+Generación de datos
+
+Para resolver un problema de clasificación supervisada necesitamos datos de entrada ${ \vec{x}{i} }{i=1}^N$ y de salida ${ \vec{y}{i} }{i=1}^N$. Eso lo generaremos de manera sintéctica con las siguientes lineas de código
+clear;
+N = 12;
+xdata = linspace(-1,1,N);
+ydata = [-1, -1, -1, -1, 1, 1, 1, 1, -1, -1, -1, -1];
+
+
+Podemos ver los datos generados
+f = figure(1)
+plot(xdata,ydata,'o-','LineWidth',2)
+xlabel('x-data')
+ylabel('y-data')
+title('Data')
+print('data.png','-dpng')
+
+
+
+
+
+Ahora queremos una ecuación diferencial controlada para una variable $z(t)$ tal que cuando reciba una condición inicial $z(0) = x_i$ evolucione durante $t=1$, y devuelva $z(t)=y_i$, esto para $\forall i \in {1,\dots,N}$.
+
+Es decir una ecuación diferencial, tal que
+
+
+
+Donde $\mathcal{P}$ es una proyección del 
+Es decir es una
+sigma = @(x) tanh(x);
+%% Dynamic definition
+import casadi.*
+As = SX.sym('A',[2 2]);
+bs = SX.sym('b',[2 1]);
+zs = SX.sym('z',[2*N 1]);
+% Create a Big matrices
+Afull =  SX.zeros(2*N,2*N);
+for i = 1:N
+   ind = ((i-1)*2+1):(i*2);
+   Afull(ind,ind) = As; 
+end
+%
+bfull = repmat(bs,N,1);
+% sym time
+ts = SX.sym('t');
+% this is the control
+us = [As(:);bs];
+% define the dynamic equation
+Fs = casadi.Function('F',{ts,zs,us},{Afull*sigma(zs) + bfull});
+
+
+Creamos el objeto ode
+Nt = 50; tspan = linspace(0,1,Nt);
+%
+idyn = ode(Fs,zs,us,tspan); % &amp;lt;- idyn is a ode object of DyCon Toolbox
+SetIntegrator(idyn,'RK4') % &amp;lt;- For solve you need choose a numerical squeme
+% initial condition
+z0          = zeros(2*N,1);
+z0(1:2:2*N) = xdata';
+% put in idyn object 
+idyn.InitialCondition = z0;
+
+
+Optimal Control Definition
+
+P = [1 1]; % no optimize P
+Pfull = repmat(P,N,1);
+Pzminusy = P*reshape(zs,2,N)-ydata; % &amp;lt;-- (P*z_i - y_i)
+L   = casadi.Function('L',  {ts,zs,us},{ sum(sum(As.^2))  + bs'*bs  });
+Psi = casadi.Function('Psi',{zs}      ,{ 1e5*(Pzminusy*Pzminusy') });
+%
+iocp = ocp(idyn,L,Psi);
+
+
+
+Solve
+[Uopt,Zopt] = IpoptSolver(iocp,ZerosControl(idyn));
+
+
+
+%% Plot
+figure(1)
+clf
+subplot(1,2,1)
+l1 = plot(tspan,Zopt(1:2:2*N,:)','b');
+hold on
+l2 = plot(tspan,Zopt(2:2:2*N,:)','r');
+legend([l1(1) l2(1)],{'z_i^1(t)','z_i^2(t)'},'Location','bestoutside')
+
+title('Optimal State')
+ylabel('z_i(t)')
+xlabel('time')
+
+subplot(2,2,2)
+plot(tspan,Uopt(1:4,:)')
+title('Optimal Control - A(t)')
+xlabel('time')
+legend({'A_1','A_2','A_3','A_4'},'Location','bestoutside')
+
+subplot(2,2,4)
+plot(tspan,Uopt(5:end,:)')
+title('Optimal Control - b(t)')
+xlabel('time')
+legend({'b_1','b_2'},'Location','bestoutside')
+
+
+Animation
+fig = figure(2);
+clf
+hold on
+
+xlim([-5 5])
+
+ylim([-5 5])
+for iter = 1:N
+    if ydata(iter) &amp;gt; 0
+        color = 'r';
+    else
+        color = 'b';
+    end
+    ilines(iter) = plot(Zopt(2*(iter-1)+1,1),Zopt(2*(iter-1)+2,1),'Color',color,'Marker','.','MarkerSize',20);
+    jlines(iter) = plot(Zopt(2*(iter-1)+1,1),Zopt(2*(iter-1)+2,1),'Color',color,'Marker','none','MarkerSize',20);
+
+end
+% 
+for it = 1:length(tspan)
+   for iter = 1:N
+    ilines(iter).XData = Zopt(2*(iter-1)+1,it);
+    ilines(iter).YData = Zopt(2*(iter-1)+2,it);
+    jlines(iter).XData = Zopt(2*(iter-1)+1,1:it);
+    jlines(iter).YData = Zopt(2*(iter-1)+2,1:it);
+   end
+    pause(0.05)
+end
+
+
+</description>
+        <pubDate>Mon, 27 Jul 2020 00:00:00 +0200</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/pretutorial/wp01/P0012</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/pretutorial/wp01/P0012</guid>
+        
+        
+        <category>pretutorial</category>
+        
+        <category>WP01</category>
+        
+      </item>
+    
+      <item>
+        <title>Stochastic optimization for simultaneous control</title>
+        <description>What is a simultaneous control problem?
+
+Consider the following parameter-dependent linear control system
+
+
+
+with
+
+
+
+The matrix $\mathbf{A}_\nu$ is associated with the Brunovsky canonical form of the linear ODE
+
+
+
+where $x^{(N)}_\nu(t)$ denotes the $N$-th derivative of the function $x(t)$.
+
+In (1)-(2), $x_\nu(t)\in L^2(0,T;\mathbf{R}^N)$, $N\geq 1$, denotes the state, the $N\times N$ matrix $\mathbf{A}_\nu$ describes the dynamics, and the function $u(t)\in L^2(0,T;\mathbb{R}^M)$, $1\leq M\leq N$, is the $M$-component control acting on the system through the $N\times M$ matrix $\mathbf{B}$. Here 
+
+ is a random parameter following a probability law $\mu$, with $(\mathcal K,\mathcal F,\mu)$ the corresponding complete probability space.
+
+With simultaneous controllability we refer to the problem of designing a unique parameter-independent control function capable to steer all the different realizations of (1) to some prescribed final target in time $T$, that is (see Figure 1 and Figure 2):
+
+
+
+
+
+Figure 1: evolution of the free (left) and controlled (right) dynamics of (1)-(2) with $N=4$.
+
+
+
+Figure 2: parameter-independent control function.
+
+How can we solve a simultaneous controllability problem?
+
+The computation of a simultaneous control for (1)-(2) can be carried out through a standard optimal control methodology by solving the following minimization problem
+
+
+
+subject to the dynamics given by (1)-(2). Here $\mathbb{E}[\cdot]$ denotes the expectation operator.
+
+Typical approaches to solve the optimization problem (3) are (see [3]):
+
+
+  The Gradient Descent (GD) algorithm: we find the minimizer $\widehat{u}$ as the limit $k\to +\infty$ of the following iterative process
+
+
+
+
+where for all $\nu\in\mathcal K$ the pair $(x_\nu,p_\nu)$ solves the coupled system
+
+
+
+
+  The Conjugate Gradient (CG) algorithm: the gradient $\nabla F_\nu$ is rewritten in the form
+
+
+
+
+where the operators $\mathcal L_{T,\nu}$ and $\mathcal L_{T,\nu}^\ast$ are defined as
+
+
+
+with $U:=L^2(0,T;\mathbb{R}^M)$ and
+
+
+
+We then use the conjugate gradient algorithm to solve the linear system $\mathbb{A}u = b$.
+
+These two procedures are impractical when the cardinality of the parameter set $\mathcal K$ is large because they require repeated resolutions of the dynamics (4) for all $\nu\in \mathcal K$.
+
+This issue can be bypassed by employing a stochastic optimization method. In particular, we can consider the following approaches:
+
+
+  The Stochastic Gradient Descent (SGD) algorithm (see [2]): it is a drastic simplification of the classical GD in which, instead of computing the gradient of the functional for all parameters $\nu\in\mathcal K$, in each iteration this gradient is estimated on the basis of a single randomly picked configuration. This translates in the following recursion process
+
+
+
+
+with $\nu_k$ selected i.i.d. from $\mathcal K$.
+
+  The Continuous Stochastic Gradient (CSG) algorithm: it is a variant of SGD, based on the idea of reusing previously obtained information to improve the efficiency. The CSG recursion process for optimizing $F_\nu$ is given by
+
+
+
+
+where the weights ${\alpha_\ell}_{\ell = 1}^k$ are obtained through the methodology presented in [4].
+
+Experimental Results: comparison of the algorithms
+
+We can test the efficiency of each one of the four aforementioned algorithms by performing simulations for increasing values of 
+.
+ In these simulations, we have chosen the initial state $x^0 =(1,1,1,1)^\top$ and the final target $x^T=(0,0,0,0)^\top$. The time horizon is set to be $T=1s$. The parameter set is a $|\mathcal K|$ points partition of the interval $[1,6]$: 
+
+ with $\nu_1=1$ and $\nu_{|\mathcal K|}=6$.
+
+Figure 3 displays the computational times (in logarithmic scale) the four algorithms need to compute a simultaneous control for (1)-(2).
+
+
+
+Figure 3: computational time (in logarithmic scale) to converge to the tolerance $\varepsilon = 10^{-4}$ of the GD, CG, SGD and CSG algorithms applied to the problem (1)-(2) with different values of $|\mathcal K|$.
+
+We can observe the following facts:
+
+
+  The GD algorithm is the one showing the worst performances. This because it has to copy with a high per-iteration cost but also with the fact that controllability problems are typically bad conditioned.
+  The CG algorithm is the one requiring the lower number of iterations to converge. This implies that CG is the best approach among the one considered when dealing with a low and moderate amount of parameters.
+  The stochastic approaches SGD and CSG appear to be insensitive to the cardinality of the parameter set. This fact is not surprising if we consider that, no matter how many parameters enter in our control problem, with SGD and CSG each iteration of the optimization process always requires only one resolution of the coupled system (4).
+  The CSG algorithm always outperforms SGD in terms of the number of iterations it requires to converge and, consequently, of the total computational time. This because in CSG the approximated gradient is close to the full gradient $\nabla F_\nu$ of the objective functional when $k\to +\infty$. This translates in a less noisy optimization process with better convergence behavior (see Figure 4).
+
+
+
+
+Figure 4: convergence of the error for SGD and CSG. The plots correspond to $50$ launches of the two algorithms with a tolerance $\varepsilon = 10^{-4}$.
+
+
+All these considerations corroborate the fact that, when dealing with large parameter sets, a stochastic approach is preferable to a deterministic one to address the simultaneous controllability of (1)-(2).
+
+A more complete discussion on the employment of stochastic optimization algorithms for simultaneous controllability can be found in [1].
+
+Bibliography
+
+[1] U. Biccari, A. Navarro-Quiles and E. Zuazua, Stochastic optimization methods for the simultaneous controllability of parameter-dependent systems, preprint (2020).
+
+[2] L. Bottou, F. E. Curtis and J. Nocedal, Optimization methods for large-scale machine learning, SIAM Rev., Vol. 60, No. 2 (2018), pp. 223-311.
+
+[3] J. Nocedal and S. Wright, S, Numerical optimization, Springer Science &amp;amp; Business Media, 2006.
+
+[4] L. Pflug, N. Bernhardt, M. Grieshammer and M. Stingl, A new stochastic gradient method for the efficient solution of structural optimization problems with infinitely many state problems, preprint (2020).
+</description>
+        <pubDate>Wed, 03 Jun 2020 00:00:00 +0200</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/tutorial/wp01/P0011</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/tutorial/wp01/P0011</guid>
+        
+        
+        <category>tutorial</category>
+        
+        <category>WP01</category>
+        
+      </item>
+    
+      <item>
+        <title>Synchronized Oscillators</title>
+        <description>Consider the Kuramoto model for the synchronization of coupled oscillators
+
+
+
+Here $\theta_i(t)$, $i = 1,\ldots,N$, is the phase of the $i$-th oscillator, $\omega_i$ is its natural frequency and $K$ is the coupling strength. The frequencies $\omega_i$ are distributed with a given probability density $f(\omega)$, unimodal and symmetric around the mean frequency
+
+
+
+that is, $f(\Omega+\omega) = f(\Omega-\omega)$.
+
+It is known that, if the coupling $K$ is sufficiently strong, the oscillators will synchronize asymptotically, i.e.
+
+
+
+We want to design a control capable to ensure synchronization in a final time horizon $T$, that is
+
+
+
+To compute this optimal control allowing us to reach the synchronized configuration (3) we can adopt a classical approach based on the resolution of the following optimization problem
+
+
+
+subject to the dynamics (1).
+
+For the resolution of (3), we use the standard GD method, which looks for the minimum $u$ as the limit $k\to +\infty$ of the following iterative process
+
+
+
+This gradient technique is most often chosen because it is very easy to be implemented.
+
+In order to fully define the iterative scheme (4), we need to compute the gradient $\nabla J(u)$. This can be done via the Pontryagin maximum principle.
+
+To this end, let us first rewrite the dynamics (1) in a vectorial form as follows
+
+
+
+with $\Theta :=(\theta_1,\ldots,\theta_N)^\top$, $\Theta^0:=(\theta_1^0,\ldots,\theta_N^0)^\top$ and $\Omega :=(\omega_1,\ldots,\omega_N)^\top$, and where $F$ is the vector field given by
+
+
+
+Using the notation just introduced, we obtain the following expression for the gradient of $J(u)$
+
+
+
+where $\mathcal D_uF$ indicates the Jacobian of the vector field $F$, computed with respect to the variable $u$.
+
+In (5), we denoted with $p = (p_1,\ldots,p_N)$ the solution of the adjoint equation associated with (1), which is given by
+
+
+
+where $\mathcal D_\Theta F$ stands again for the Jacobian of the vector field $F$, this time computed with respect to the variable $\Theta$.
+
+Taking into account the expression of the vector field $F$, we can then see that the iterative scheme (4) becomes
+
+
+
+with
+
+
+
+We then see that, at each iteration $k$ the optimization scheme (6) requires to solve a $N$-dimensional non-linear dynamical system. This may rapidly become computationally very expensive, especially when the number $N$ of oscillators in our system is large.
+
+In order to reduce this computational burden, we can combine the standard GD algorithm with the so-called Random Batch Method (RBM), which is a recently developed approach (see [2]) allowing for an efficient numerical simulation of high-dimensional collective behavior problems. This technique is based on the following simple idea: at each time step $t_m = m\cdot dt$ in the mesh we employ to solve the dynamics, we divide randomly the $N$ particles into $n$ small batches with size $2\leq P&amp;lt;N$, denoted by $C_q$, $q = 1,\ldots,n$, that is
+
+
+
+Once this partition of ${1,\ldots,N}$ has been performed, we solve the dynamics by interacting only particles within the same batch. In this way, we are now dealing with systems of lower dimension and the computational cost of the GD algorithm is reduced.
+
+Numerical simulations
+
+We can check the effectiveness of the proposed approach through some numerical simulations for the computation of the optimal control $\widehat{u}$.
+
+Firstly, we can show that the optimization problem (3) indeed allows to compute an effective control function which is capable to steer the Kuramoto model (1) to a synchronized configuration.
+
+In Figure 1-top, we show the evolution of the uncontrolled dynamics, which corresponds to taking $u\equiv 1$ in (1). As we can see, the oscillators are evolving towards a synchronized configuration, but synchronization is not reached in the short time horizon we are providing. In Figure 1-bottom, we show the evolution of the same dynamics, this time under the action of the control function $u$ computed through the minimization of $J(u)$. The subplot on the left corresponds to the simulations done with the GD approach, while the one on the right is done employing GD-RBM. We can clearly see how, in both cases, the oscillators are all synchronized at the final time $T=3s$. This means that both algorithms managed to compute an effective control.
+
+
+
+  Figure 1. Top - evolution of the free dynamics of the Kuramoto model (1) with $N=10$ oscillators. Bottom - evolution of the controlled dynamics of the Kuramoto model (1) with $N=10$ oscillators. The control function $\widehat{u}$ is obtained with the GD (left) and the GD-RBM (right) approach.
+
+
+In Figure 2, we display the behavior of the control function $\widehat{u}$ computed via the GD-RBM algorithm. We can see how, at the beginning of the time interval we are considering, this control is close to one and it is increasing with a small slope. On the other hand, this growth becomes more pronounced as we get closer to the final time $T=3s$.
+
+
+
+  Figure 2. control function $\widehat{u}$ obtained through the GD-RBM algorithm applied to the Kuramoto model (1) with $N=10$ oscillators.
+
+
+Notice that, in (1), $\widehat{u}$ enters as a multiplicative control which modifies the strength of the coupling $K$. Hence, according to the profile displayed in Figure 2, the control function $\widehat{u}$ we computed is initially letting the system evolving following its natural dynamics. Then, as the time evolves towards the horizon $T=3s$, $\widehat{u}$ enhances the coupling strength $K$ in order to reach the desired synchronized configuration (2).
+
+We can now compare the performances of the GD and GD-RBM algorithms for the computation of the optimal control $\widehat{u}$. To this end, we can run simulations for increasing values of $N$, namely $N=10,50,100,250,1000$.
+
+Figure Figure 3 shows the computational times required by the two methodologies to solve the optimization problem (3).
+
+
+
+  Figure 3. computational times required by the GD and GD-RBM algorithm to compute the optimal control $\widehat{u}$ with increasing values of $N$.
+
+
+Our simulations show how, for low values of $N$, the two approaches show similar behaviors. Nevertheless, when increasing the number of oscillators in our system, the advantages of the GD-RBM methodology with respect to GD become evident. In particular, the growth of the computational time for GD-RBM is significantly less pronounced than for GD. As a matter of fact, Figure 3 is not considering the case of $N=1000$ oscillators with GD, since the behavior with smaller values of $N$ already suggested that this experiment would be computationally too expensive.
+
+On the other hand, even with $N=1000$ oscillators in the system, the GD-RBM approach turns out to be able to compute an effective control for the Kuramoto model (1) in about $29$ seconds (see Figure 4).
+
+
+
+  Figure 4. evolution of the controlled dynamics of the Kuramoto model (1) with $N=1000$ oscillators. The control has been computed with the GD-RBM algorithm.
+
+
+More details on the contents of this post can be found in [1].
+
+Bibliography
+
+[1] U. Biccari and E. Zuazua, A stochastic approach to the synchronization of coupled oscillators, to appear in Front. Energy Res.
+
+[2] S. Jin, L. Li and J.-G. Liu, Random Batch Methods (RBM) for nteracting particle systems, J. Comput. Phys. 400 (2020), 108877.
+</description>
+        <pubDate>Wed, 03 Jun 2020 00:00:00 +0200</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/tutorial/wp01/P0006</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/tutorial/wp01/P0006</guid>
+        
+        
+        <category>tutorial</category>
+        
+        <category>WP01</category>
+        
+      </item>
+    
+      <item>
+        <title>The interplay of control and deep learning</title>
+        <description>It is superfluous to state the impact deep learning has had on modern technology. From a mathematical point of view however, a large number of the employed models remain rather ad hoc.
+
+When formulated mathematically, deep supervised learning roughly consists in solving an optimal control problem subject to a nonlinear discrete-time dynamical system, called an artificial neural network.
+
+
+
+
+
+1. Setup
+
+Deep supervised learning [1, 3] (and more generally, supervised machine learning), can be summarized by the following scheme. 
+We are interested in approximating a function $f: \R^d \rightarrow \R^m$, of some class, which is unknown a priori. We have data: its values 
+at $S$ distinct points  (possibly noisy).
+We generally split the $S$ data points into training  data  and testing data . In practice, $N\gg S-N-1$.
+
+“Learning” generally consists in:
+
+
+  Proposing a candidate approximation 
+ $f_\Theta( \cdot): \R^d \rightarrow \R^m$, depending on tunable parameters $\Theta$ and fixed hyper-parameters $L\geq 1$, ${ d_k}$;
+  
+    Tune $\Theta$ as to minimize the empirical risk: 
+where $\ell \geq 0$, $\ell(x, x) = 0$ (e.g. $\ell(x, y) = |x-y|^2$). This is called training.
+  
+  A posteriori analysis: check if test error  is small. 
+This is called generalization.
+
+
+Remark:
+
+
+  
+    There are two types of tasks in supervised learning:
+classification ($\vec{y}_i \in {-1,1}^m$ or more generally, a discrete set), and regression ($\vec{y}_i \in \R^m$).
+We will henceforth only present examples of binary classification, namely $\vec{y}_i \in {-1, 1}$, for simple presentation purposes.
+  
+  
+    Point 3 is inherently linked with the size of the control parameters $\Theta$. 
+Namely, a penalisation of the empirical risk in theory provides better generalisation.
+  
+
+
+
+
+
+ Figure 1. 
+Underfitting, good generalization, and overfitting. We wish to recover the function $f(x) = \cos(\frac32 \pi x)$ (blue) on $(0, 1)$ from $S=20$ noisy data samples.
+Constructed approximations using $N=12$ training data, while the remaining $8$ samples are used for testing the results. The most complicated model (right) is not necessarily the best (Occam's razor).
+This is related to the Runge phenomenon.
+
+
+Remark: It is at the point of generalisation where the objective of supervised learning differs slightly from classical optimisation/optimal control. Indeed, whilst in deep learning one too is interested in “matching” the labels $\vec{y}_i$ of the training set, one also needs to guarantee satisfactory performance on points oustide of the training set.
+
+
+
+2. Artificial Neural Networks
+
+There exists an entire jungle (see [1, 3]) of specific neural networks used in practice and studied in theory.
+For the sake of presentation, we will discuss two of the most simple examples.
+
+2.1. Multi-layer perceptron
+
+We henceforth assume that we are given a training dataset 
+.
+
+
+Definition (Neural network):  Let  and  be given. Set $d_0 := d$ and $d_{L+1} :=m$.
+A neural network with $L$ hidden layers is a map
+
+
+
+where $z^L = z^L_i \in \R^m$ being given by the scheme
+
+
+
+Here  are given parameters such that $A^k \in \R^{d_{k+1}\times d_k}$ and $b^k \in \R^{d_k}$, and $\sigma \in C^{0, 1}(\R)$ is a fixed, non-decreasing function.
+
+
+
+Remark: Several remarks are in order:
+
+
+  The above-defined neural network is usually referred to as the multi-layer perceptron (see Multilayer_perceptron)
+  Observe that $z^k \in \R^{d_k}$ for .
+  The function $\sigma$ is always nonlinear in practice (as otherwise the optimisation problem roughly coincides with least squares for a linear regression). It is called the activation function.
+  Generally, $\sigma(x) = \max(x, 0)$ or $\sigma(x) = \tanh(x)$ (but others work too).
+  Deep learning means optimisation subject to a multi-layered neural net: $L\geq 2$ at least.
+
+
+
+Let us denote $\Lambda_k x :=A^k x + b^k$.
+
+
+
+
+ Figure 2. 
+The commonly used graph representation for a neural net.
+This figure essentially represents the discrete-time dynamics of a single datum from the training set through the nonlinear scheme.
+
+
+
+An MLP scheme with $\sigma(x) = \tanh(x)$ can be coded in pytorch more or less as follows:
+
+import torch.nn as nn
+
+class OneBlock(nn.Module):
+	def __init__(self, d1, d2):
+		super(OneBlock, self).__init__()
+		self.d1 = d1
+		self.d2 = d2
+
+		self.mlp = nn.Sequential(
+			nn.Linear(d1, d2),
+			nn.Tanh()
+		)
+	def forward(self, x): 
+		return self.mlp(x)
+
+class Perceptron(nn.Module):
+	def __init__(self, dimensions, num_layers):
+		super(Perceptron, self).__init__()
+
+		self.dimensions = dimensions
+		_ = \
+			[OneBlock(self.dimensions[k], self.dimensions[k-1]) for k in range(1, num_layers-1)]
+
+		self.blocks = nn.Sequential(*_)
+		self.projector = nn.Linear(self.dimensions[-2], self.dimensions[-1])
+
+	def forward(self, x)_
+		return self.projector(self.blocks(x))
+
+
+
+We can save this class in a file called model.py.
+Then one may create an instance of a Perceptron model for practical usage as follows:
+
+import torch
+device = torch.device('cpu')
+from model import Perceptron
+
+model = Perceptron(device, dimensions=[1,3,4,3,1], num_layers=5)
+
+
+
+
+
+How it works.
+
+We now see, in some overly-simplified scenarios, how the forward propagation of the inputs in the context of binary classification.
+
+
+
+
+    
+        
+        
+    
+
+
+ Figure 3. 
+Here $A^0 \in R^{2\times 1}$ and $b^0 \in \R^2$.
+We see how the neural net essentially generates a nonlinear transform, such that the originally mixed points are now linearly separable.
+
+
+An interesting blog on visualising the transitions is the following: https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/.
+
+
+
+2.2. Residual neural networks
+
+We now impose that the dimensions of the iterations and the parameters stay fixed over each step.
+This will allow us to add an addendum term in the scheme.
+
+
+Definition (Residual neural network [2]):  Let  and  be given. Set $d_0 := d$ and $d_{L+1} :=m$.
+A residual neural network (ResNet) with $L$ hidden layers is a map
+
+
+
+where $z^L = z^L_i \in \R^d$ being given by the scheme
+
+
+
+Here $\Theta = {A^k, b^k}_{k=0}^{L}$ are given parameters such that $A^k \in \R^{d\times d}$ and $b^k \in \R^{d}$ for $k&amp;lt;L$ and $A^L \in \R^{m\times d}, b^L \in \R^m$, and $\sigma \in C^{0, 1}(\R)$ is a fixed, non-decreasing function.
+
+
+
+3. Training
+
+Training consists in solving the optimization problem:
+
+
+
+
+  $\epsilon&amp;gt;0$ is a penalization parameter.
+  It is a non-convex optimization problem because of the non-linearity of $f_L$.
+  Existence of a minimizer may be shown by the direct method.
+
+
+Once training is done, and we have a minimizer $\widehat{\Theta}$, we consider $f_{\widehat{\Theta}}(\cdot)$ and use it on other points of interest $\vec{x} \in \R^d$ outside the training set.
+
+3.1. Computing the minimizer
+
+The functional to be minimized is of the form
+
+
+
+We could do gradient descent:
+
+
+
+$\eta$ is step-size. But often $N \gg 1$ ($N=10^3$ or much more).
+
+Stochastic gradient descent: (Robbins-Monro [7], Bottou et al [8]):
+
+
+  
+    pick $i \in {1, \ldots, N}$ uniformly at random
+  
+  
+    $\Theta^{n+1} := \Theta^n - \eta \nabla J_{i}(\Theta^n)$
+  
+
+
+
+  Mini-batch GD: can also be considered (pick a subset of data instead of just one point)
+  Use chain rule and adjoints to compute these gradients (“backpropagation”)
+  Issues: might not converge to global minimizer; also how does one initialize the weights in the iteration (usually done at random)?
+
+
+
+We come back to the file model.py. Here is a snippet on how to call training modules.
+
+# Given generated data
+# Coded a function def optimize() witin
+# a class Trainer() which
+# does the optimization of paramterss
+
+epochs = input()
+optimizer = torch.optim.SGD(perceptron.parameters(), lr=1e-3, weight_decay=1e-3)
+
+trainer = Trainer(perceptron, optimizer, device)
+trainer.train(data, epochs)
+
+
+
+
+3.2. Continuous-time optimal control problem
+
+We begin by visualising how the flow map of a continuous-time neural net separates the training data in a linear fashion at time $1$ (even before in fact).
+
+
+  
+   
+
+    
+
+
+ 
+ 
+ 
+
+ Figure 4. 
+The time-steps play the role of layers. We are working with an ode on $(0, 1)$. We see that the points are linearly separable at the final time, so the flow map defines a &quot;linearisation&quot; of the training dataset.
+
+
+Recall that often $\varphi \equiv \sigma$ (classification)  or $\varphi(x) = x$ (regression).
+
+It can be advantageous to consider the continuous-time optimal control problem:
+
+
+
+where $z = z_i$ solves
+
+
+
+
+Remark:
+
+The ResNet neural network can then be seen as the forward Euler discretisation with $\Delta t = 1$.
+The relevance of this scale when passing from continuous to discrete has not been addressed in the litearature.
+
+
+Thus, in the continuous-time limit, deep supervised learning for ResNets can be seen as an optimal control problem for a parametrised, high-dimensional ODE.
+
+This idea of viewing deep learning as finite dimensional optimal control was (mathematically) formulated in [12], and subsequently investigated from a theoretical and computational viewpoint in [11, 10, 5, 6, 13, 14], among others.
+
+
+Remark:
+
+There are many tricks which can be used in the above ODE to improve performance.
+
+
+  For instance, we may embed the initial data in a higher dimensional space at the beginning, and consider the system in an even bigger dimension. It is rather intuitive that the bigger the dimension where the system evolves is, the easier it is to separate the points by a hyperplane.
+  However, characterising the optimal dimension where one needs to consider the evolution of the neural net in terms of the topology of the training data is, up to the best of our knowledge, an open problem. 
+The choice in practice is done by cross-validation.
+
+
+
+
+
+ Figure 5. 
+Analogous scenario as in Figure 4, this time in dimension 3.
+
+
+References:
+
+[1] Ian Goodfellow and Yoshua Bengio and Aaron Courville. (2016). Deep Learning, MIT Press.
+
+[2] He, K., Zhang, X., Ren, S., and Sun, J. (2016). Deep residual learning for image
+recognition. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages
+770–778.
+
+[3] LeCun, Y., Bengio, Y., and Hinton, G. (2015). Deep learning. Nature,
+521(7553):436–444.
+
+[4] LeCun, Y., Boser, B. E., Denker, J. S., Henderson, D., Howard, R. E., Hubbard,
+W. E., and Jackel, L. D. (1990). Handwritten digit recognition with a back-propagation network. In
+Advances in neural information processing systems, pages 396–404.
+
+[5] Chen, T. Q., Rubanova, Y., Bettencourt, J., and Duvenaud, D. K. (2018). Neural
+ordinary differential equations. In Advances in neural information processing systems, pages 6571–
+6583.
+
+[6] Dupont, E., Doucet, A., and Teh, Y. W. (2019). Augmented neural odes. In
+Advances in Neural Information Processing Systems, pages 3134–3144.
+
+[7] Herbert Robbins and Sutton Monro. A Stochastic Approximation Method. The Annals of Mathematical Statistics, 22(3):400–407, 1951
+
+[8] Léon Bottou, Frank E. Curtis and Jorge Nocedal: Optimization Methods for Large-Scale Machine Learning, Siam Review, 60(2):223-311, 2018.
+
+[9] Matthew Thorpe and Yves van Gennip. Deep limits of residual neural networks. arXiv preprint arXiv:1810.11741, 2018.
+
+[10] Weinan, E., Han, J., and Li, Q. (2019). A mean-field optimal control formulation
+of deep learning. Research in the Mathematical Sciences, 6(1):10.
+
+[11] Li, Q., Chen, L., Tai, C., and Weinan, E. (2017). Maximum principle based algorithms
+for deep learning. The Journal of Machine Learning Research, 18(1):5998–6026.
+
+[12] Weinan, E. (2017). A proposal on machine learning via dynamical systems. Communications in Mathematics and Statistics, 5(1):1–11.
+
+</description>
+        <pubDate>Thu, 30 Apr 2020 00:00:00 +0200</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/tutorial/wp01/P0010</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/tutorial/wp01/P0010</guid>
+        
+        
+        <category>tutorial</category>
+        
+        <category>WP01</category>
+        
+      </item>
+    
+      <item>
+        <title>Control of reaction-diffusion under state constraints - Heterogeneous setting: Gene-flow.</title>
+        <description>
+    
+    Control of reaction-diffusion
+    This is a post in a collection of several on control of reaction-diffusion under state constraints
+    See more ...
+    
+
+
+Equation and drift effect
+
+The equation under concern is:
+
+
+
+where $N$ is a positive regular function.
+
+The physical meaning of the equation is a reaction-diffusion process on the proportion $u$ of individuals along a static heterogeneous distribution $N$.
+
+The effect of this heterogeneous drift can be qualitatively understood in Figure 1. The blue line in the figure is the distribution $N$ and the orange one the term $-2\frac{N_x}{N}$. In the picture in the left we have the Gaussian with variance $\sigma$, leading to a drift effect that is pushing $u$ towards the boundary. At the right, we have the function $e^{x^2/\sigma}$ leading to the contrary effect, the population in the boundary is pushed inside the domain.
+
+From the discussion above we expect the boundary control to be enhanced in the case of $N(x)=e^{x^2/\sigma}$ while diminished in the case of $N(x)=e^{-x^2/\sigma}$.
+
+
+
+    
+        
+            
+        
+         
+            
+               
+    
+
+
+Figure 1. In blue the curves $N(x)=e^{\mp x^2/\sigma}$ and in orange the term $-2\frac{N_x}{N}$.
+
+Slowly varying drifts: Perturbed Stair-case method
+
+Whenever the drift term $-2\frac{N_x}{N}$ is small enough, one can consider the already developed path in the homogeneous setting (see Blog staircaise), taka a sequence and apply the implicit function theorem to obtain a sequence close enough to guarantee the controllability (see [1] for details). This guarantees the controllability from the steady state $0$ to the target $\theta$.
+
+In Figure 2 an intuitive sketch of this procedure is represented.
+
+
+
+
+Figure 2. Perturbed staircase method.
+
+Large drifts: New Barriers
+
+One of the main concerns when state-constraints are present is whether or not barriers exist (see Blog Barriers). If $\theta&amp;lt;\frac{1}{2}$ then, for large $L&amp;gt;L_{\sigma}(0)&amp;gt;0$ we will have obstructions to reach $\theta$ and $0$ from $1$.
+
+In the homogeneous case, nontrivial elliptic solutions with boundary value $1$ do not exist. However, in the case of heterogeneous drift this is no longer true in general.
+
+If we set $N(x)=e^{-x^2/\sigma}$ then for every $\sigma$ one can find an $L_{\sigma}(1)&amp;gt;0$ big enough such that for every $L&amp;gt;L_{\sigma}$ there is a nontrivial solution with boundary value $1$. This nontrivial solution does not correspond to a global minima of the associated energy functional since the trivial solution $u=1$ is the global minimizer.
+
+In order to understand how this barrier can exist we have to study the following non-autonomous dynamics in the phase-plane:
+
+
+
+Any solution of the ODE above is an elliptic solution for some boundary condition. What we want to find is that there exist an $L_{\sigma}(1)$ such that the solution of the ODE at $L_{\sigma}(1)$ is $1$.
+
+Making use of the energy of the ODE
+
+
+
+and seting $a$ small one can see that the trajectory of the dynamics will eventually cross $1$. See Figure 3.
+
+
+
+    
+        
+            
+        
+         
+            
+               
+    
+
+
+
+Figure 3. At the left, the trajectory in the phase-plane associated with the elliptic solution. At the right, the resulting nontrivial solution.
+
+In Figure 4 one can see the effect of the nontrivial solution in a simulation. The red lines are snapshots of the controlled trajectory, getting darker when advancing the time, the dotted blue line is the profile $N(x)$.
+
+
+
+
+Figure 4. Simulation of the equation with control $a=1$ with $N(x)=e^{-x^2/\sigma}$.
+
+Minimal controllability time depending on the drift
+
+We have seen that the influence of the drift is key. Figure 5 shows the minimal controllability time for a fixed $L$ depending on the parameter $\frac{1}{\sigma}$. The initial state is the $0$ configuration and the target the constant steady state $\theta$.
+
+When the variance is very big we tend to the homogeneous case, while when the variance decreases the opposite phenomena is observed; when the drift enhances the control the minimal controllability time is reduced making it tend to zero while, when the drift is pushing the population outside the minimal controllability time increases and eventually blows up with the emergence of the barrier.
+
+
+
+    
+        
+            
+        
+         
+            
+               
+    
+
+
+
+Figure 5. Minimal controllability time depending on the variance. At the left for $N(x)=e^{x^2/\sigma}$ and at the right for $N(x)=e^{-x^2/\sigma}$. 
+
+References:
+[1] I. Mazari, D. Ruiz-Balet, and E. Zuazua, Constrained control of bistable reaction-diffusion equations: Gene-flow and spatially heterogeneous models, preprint: https://hal.archives-ouvertes.fr/hal-02373668/document (2019).
+
+[2] D. Pighin, E. Zuazua, Controllability under positivity constraints of multi-d wave equations, in:
+Trends in Control Theory and Partial Differential Equations, Springer, 2019, pp. 195–232.
+
+[3] J.-M. Coron, E. Trélat, Global steady-state controllability of one-dimensional semilinear heat equa-
+tions, SIAM J. Control. Optim. 43 (2) (2004) 549–569.
+
+[4] C. Pouchol, E. Trélat, E. Zuazua, Phase portrait control for 1d monostable and bistable reac-
+635
+tion–diffusion equations, Nonlinearity 32 (3) (2019) 884–909.
+
+[5]   D.  Ruiz-Balet  and  E.  Zuazua. Controllability  under  constraints  for  reaction-diffusionequations:   The  multi-dimensional  case.   Preprint  available  athttps://cmc.deusto.eus/domenec-ruiz-balet/.
+
+[6] D.  Ruiz-Balet  and  E.  Zuazua. Control of certain parabolic models from biology and social sciences.   Preprint  available  at https://cmc.deusto.eus/domenec-ruiz-balet/.
+
+</description>
+        <pubDate>Sun, 19 Apr 2020 00:00:00 +0200</pubDate>
+        <link>https://deustotech.github.io/DyCon-Blog/tutorial/wp03/P0008</link>
+        <guid isPermaLink="true">https://deustotech.github.io/DyCon-Blog/tutorial/wp03/P0008</guid>
+        
+        
+        <category>tutorial</category>
+        
+        <category>WP03</category>
+        
+      </item>
+    
+  </channel>
+</rss>

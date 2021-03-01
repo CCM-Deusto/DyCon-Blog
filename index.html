@@ -1,0 +1,94 @@
+---
+layout: default
+---
+<header class="intro-header">
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="site-heading">
+        <img class="index-img" src="{{site.url}}/{{site.baseurl}}/assets/logo_DyCon.png" alt="" srcset="">
+        <hr class="small">
+        <p class="subheading">
+          One of the main outputs of the research conducted within the DyCon ERC Project is the development of new computational methods and tools (algorithms, tutorials, sample codes, software, numerical simulations), all of which are constantly being integrated within our computational platform.
+        </p>
+        <p class="subheading no-show" style="margin: 0;">
+          The DyCon Blog offers a higher layer of our computational platform, bringing together the work done by our team. The objective of this computational blog is to share the knowledge that was collected and obtained throughout the life cycle of the DyCon ERC Project.
+
+          <div>
+            <a href="https://www.facebook.com/deustoCCM/" class="fa fa-facebook-square" style="padding: 10px;font-size: 25px; color: #777;" width="100%"></a>
+            <a href="https://twitter.com/deustoccm" class="fa fa-twitter"         style="padding: 10px;font-size: 25px; color: #777"  width="100%"></a>
+            <a href="https://www.linkedin.com/showcase/deustoccm/" class="fa fa-linkedin-square" style="padding: 10px;font-size: 25px; color: #777"  width="100%"></a>
+            <a href="https://deustotech.github.io/dycon-toolbox-documentation/" class="fa fa-wrench" style="padding: 10px;font-size: 25px; color: #777"  width="100%"></a>
+            <a href="https://github.com/DeustoTech" class="fa fa-github" style="padding: 10px;font-size: 25px; color: #777"  width="100%"></a>
+          </div>
+          <!-- DyCon Blog offers a higher layer of the computational platform, gathering the work that is currently taking place
+          inside the DyCon team. The goal of this computational blog is to share the valuable knowledge that was collected and
+          gained throughout the DyCon ERC Project's life cycle. -->
+           <!-- TODO finish this! all of which is offered in the form of posts, in order to-->
+        </p>
+        <hr>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+<div class="col-md-10 col-md-offset-1">
+<script async src="https://cse.google.com/cse.js?cx=013800383795076514665:hik5upyg2yw"></script>
+<div class="gcse-search"></div>
+
+</div>
+</div>
+
+<div class="container">
+  <div class="col-md-10 col-md-offset-1">
+    <hr>
+    <!-- <h1 class="h1-title">Work Packages</h1> -->
+    <!-- <div class="container">
+
+      <div class="col-md-10 row">
+        {% assign WPS = site.data.WorkPackages  %}
+        {% for iWP in WPS %}
+          <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+              <a href="{{site.url}}/{{site.baseurl}}/workpackage/{{iWP[0]}}">
+                <img width="95%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png"></img>
+              </a>
+              <div class="card-body" >
+                <div style="height:62px">
+                <center>
+                  <h5 class="card-text"><b>{{iWP[0]}}</b>: {{iWP[1].name}}</h5>
+                </center>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <form action="{{site.url}}/{{site.baseurl}}/workpackage/{{iWP[0]}}">
+                      <center><button type="button submit" class="btn btn-sm btn-outline-secondary">View</button>
+                      </center>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div> -->
+
+    <hr>
+
+
+    <h1 class="h1-title">Recent Posts</h1>
+    {% assign qposts = site.posts | where:"layout","tutorial"|sort |reverse %}
+    {% for post in qposts limit: 15 %}
+        {% include card.html title       = post.title
+                             url         = post.url
+                             author      = post.author
+                             description = post.description
+                             code        = post.code
+                             avatar      = post.avatar
+                             date        = post.date %}
+    {% endfor %}
+    <h3 class="see-more"><a href="{{site.url}}{{site.baseurl}}/projects/posts">Check all the documentation</a></h3>
+  </div>
+</div>
+

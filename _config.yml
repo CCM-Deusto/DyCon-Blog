@@ -1,0 +1,28 @@
+# Site settings
+title: DyCon Blog
+description: Welcome to the web interface of DyCon Toolbox, the computational platform developed within the <a href='https://cmc.deusto.eus/dycon/' target='_blank'>ERC DyCon - Dynamic Control</a> project.
+
+# Secondary Parameters
+baseurl: "/DyCon-Blog" # the subpath of your site, e.g. /blog
+url: "https://deustotech.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+#
+
+destination: docs
+header-img: img/home-bg.gif
+headercolor: "black"
+logo: assets/logo_DyConToolbox_v001.png
+
+# Tertiary Parameters
+github_username:  DeustoTech
+project_repository: dycon-platform
+disqus_shortname: dycon-platform
+g-analytics:
+altmetric: true
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+future: true
+

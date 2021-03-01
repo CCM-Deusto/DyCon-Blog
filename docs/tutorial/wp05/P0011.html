@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Welcome to the web interface of DyCon Toolbox, the computational platform developed within the <a href='https://cmc.deusto.eus/dycon/' target='_blank'>ERC DyCon - Dynamic Control</a> project.">
+	<link rel='shortcut icon' type='image/png' href='/DyCon-Blog/favicon.png' />
+
+  <title>
+    Moving control strategy for memory-type equations - DyCon Blog
+    
+  </title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="canonical" href="https://deustotech.github.io/DyCon-Blog/tutorial/wp05/P0011">
+
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/clean-blog.css">
+
+   <!-- Adjust Colors -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/colorscheme.css">
+
+  <!-- Pygments Github CSS -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/syntax.css">
+
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/google-search.css">
+
+
+  
+  <script src="https://deustotech.github.io/DyCon-Blog/lib/js/libgif.js "></script>
+  <script src="https://deustotech.github.io/DyCon-Blog/lib/js/rubbable.js "></script>
+
+
+  <!-- Google Fonts Raleway -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+	<!-- MathJax -->
+  <script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    },
+		TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      extensions: ["AMSmath.js", "AMSsymbols.js"],
+      Macros:{
+        norm: ["|| #1 ||",1],
+        abs: ["| #1 |",1],
+        hdots: "...",
+        RR: "\\mathbb{R}",
+        ffl: ["(d_x^2)^{#1}",1],
+        ccs: "c_{1,s}",
+        kernel: ["|x-y|^{#1}",1],
+        ue: ["#1^{\\epsilon}",1]
+      }
+    },
+    CommonHTML: {
+      styles: {
+        "@font-face /* vec */ ": {
+          "font-family": "MJX-VEC",
+          src: [
+            "url(data:application/x-font-woff;charset=utf-8;base64,",
+            "d09GRgABAAAAAARMAA0AAAAABiQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEMAAAABwA",
+            "AAAccRGLqUdERUYAAAQMAAAAJAAAACgANAAmT1MvMgAAAaAAAABJAAAAYFc5gfFjbWFwAAACAAAA",
+            "AEYAAAFKQxjlbWdhc3AAAAQEAAAACAAAAAj//wADZ2x5ZgAAAlQAAACUAAAAlIQU9HBoZWFkAAAB",
+            "MAAAADAAAAA2C748e2hoZWEAAAFgAAAAHgAAACQFXQDqaG10eAAAAewAAAAUAAAAFAYvAE9sb2Nh",
+            "AAACSAAAAAwAAAAMACgAcm1heHAAAAGAAAAAHQAAACAASQAmbmFtZQAAAugAAADxAAAB5uwlD0hw",
+            "b3N0AAAD3AAAACgAAAA34M9aEXjaY2BkYGAA4uOfgq7G89t8ZeBmfgEUYbga+icNTssClVxnOgXk",
+            "cjAwgUQBdqEMW3jaY2BkYGBu+feBgYHxCwMQMF5nYGRABawAcaQESgAAeNpjYGRgYGBlUGZgYgAB",
+            "EMnIABJzAPMZAAZZAHAAAAB42mNgYSxn/MLAysDA1MW0h4GBoQdCMz5gMGRkAooysDEzwAAjECvA",
+            "OAFprikMBxgUFCcxt/z7wMDA3MIoAFUDAwoMjACD8Qv5AAAAAfQAMgAAAAABTQAAAPoAAAH0AB14",
+            "2mNgYGBmgGAZBkYGEHAB8hjBfBYGDSDNBqQZGZgYFBQn/f8P5IPp/4/vFUHVAwEjGwOcw8gEJJgY",
+            "UAEjxIrhDACLGwmnAAAAAAAUABQAFAAUAEoAAgAyAAABwgIVAAMABwAAMxEhESUhESEyAZD+ogEs",
+            "/tQCFf3rMgGxAAEAHQIEAdcCygAiAAABNDYzMhcWFxYXFhUUBgcGBw4DIyImNTQ3IycmNTQ3ISYB",
+            "eQsJBwUFBQofCwYLKyACBwMGBAcNL6urDQ0BZxgCtggMBQQPJRQHCwkGBhYpAgkCAgsJEygBCQoH",
+            "DSYAeNqVjrGKwkAURe/EGBBUrG12CishMrFQcDuLsAi26YMOmsIMxAh+hN8i+CF+gd+y4B3zttjC",
+            "woHhncu7774HoI8rFP5eIKzQw5dwgAjfwi2McBEO6bkLtzHAr3CEnhrTqcKOpDasMCQ1HKCLWLiF",
+            "HyyFQ3puwm1oPIQjDFXfR62Ro8YeK9YzMlhsqB0qtvJ6v8rPmd3Uzkv2tihwwoHCbosTa0pryYH0",
+            "NbKjRWPB/z626Se8dsY/hSHPGeTKOnXVzuqF/reYOoln8dQk80+u9b0KR97rD9Rc4xdNXtVQI7PV",
+            "sXClNiaZGGP0B+FPMN1KMAAAAHjaY2BiAIP/zQxGDNgAKxAzMjAxMDMycSUWFeWXF2WmZ5QAAGh5",
+            "BhgAAAAB//8AAnjaY2BkYGDgA2IJBgUgycTAyMDMwAIkWcA8BgZGCAYACgIAWwAAAAEAAAAAxmW3",
+            "ygAAAADVVeemAAAAANVV7Dg=) format('woff')"
+          ].join('')
+        },
+        ".MJX-VEC": {
+          "font-family": "MJX-VEC"
+        }
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook("CommonHTML Jax Ready", function () {
+    var MML = MathJax.ElementJax.mml;
+    var fixCombiningChar = MML.mo.prototype.CHTMLfixCombiningChar;
+    MML.mo.Augment({
+      CHTMLfixCombiningChar: function (node) {
+        if (node.textContent === '\u20D7') {
+          //
+          //  Safari makes combining characters into non-combining ones when
+          //  they don't have anything to combine with; replace \vec arrow
+          //  with a non-combining one so all browsers get the same thing
+          //
+          node = node.firstChild;
+          node.firstChild.nodeValue = "\u2192";
+          node.className = "mjx-char MJX-VEC";
+          node.style.marginLeft = "-.5em";
+          node.style.paddingTop = ".45em";
+        } else {
+          fixCombiningChar.call(this,node);
+        }
+      }
+    });
+  });
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js" type="text/javascript"></script>-->
+
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+  <script src="https://deustotech.github.io/DyCon-Blog/js/clean-blog.min.js "></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128123935-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-128123935-3');
+  </script>
+  <!-- End Google Analytics -->
+
+
+
+  <!-- marKdown editor -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="/DyCon-Blog/">
+                 <img src="https://deustotech.github.io//DyCon-Blog//assets/logo_DyCon.png">
+            </a> -->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/DyCon-Blog/">Home</a>
+                </li>
+                
+                
+                    
+                        
+                    
+                                   
+                <li>
+                    <a href="/DyCon-Blog/projects/posts">Documentation</a>
+                </li>
+                
+                    
+                
+                    
+                <li>
+                        <a href="https://deustotech.github.io/DyCon-Blog/projects/search.byWP">Sitemap</a>
+                </li>
+                <li>
+                        <a href="http://cmc.deusto.eus/">Chair of Computational Mathematics</a>
+                </li>
+                
+            </ul>
+
+        
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Post Header -->
+<header class="intro-header">
+  <div class="container" style="padding-top: 70px;">
+    <div class="row">
+      <div class="col-lg-10 col-md-10 col-md-offset-1">
+        <div class="post-heading" style="padding: 0px 0"><h2><small class="light-grey"><a href="https://deustotech.github.io//DyCon-Blog/projects/posts">Work Packages</a>
+            &#8827;<a href="https://deustotech.github.io//DyCon-Blog/workpackage/WP05">
+            Models involving memory terms and hybrid PDE+ODE systems</a> &#8827;</small>
+          </h2>
+          <h1>Moving control strategy for memory-type equations</h1>
+					<p class="meta">
+            <div class="post-preview-authors ellipsis-one-line">
+              Authors:
+              
+              
+                
+                <span style="text-decoration: none;" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                  <span itemprop="name">
+                    <a style="text-decoration: none;" href="https://deustotech.github.io/DyCon-Blog/author/JesusO">Jesus Oroya</a>,
+                  </span>
+                </span>
+              
+                
+                <span style="text-decoration: none;" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                  <span itemprop="name">
+                    <a style="text-decoration: none;" href="https://deustotech.github.io/DyCon-Blog/author/UmbertoB">Umberto Biccari</a>
+                  </span>
+                </span>
+              
+              - 20 October 2020
+            </div>
+					</p>
+        </div>
+      </div>
+		</div>
+	</div>
+</header>
+<!-- Post Content -->
+<style>
+img {
+	display:block;
+	max-width:  100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media only screen and (min-width: 1000px) {
+img {
+	-moz-transition:-moz-transform 0.5s ease-in; 
+	-webkit-transition:-webkit-transform 0.5s ease-in; 
+	-o-transition:-o-transform 0.5s ease-in;
+}
+img:active{
+	-moz-transform:scale(1.2); 
+	-webkit-transform:scale(1.2);
+	-o-transform:scale(1.2);
+}
+}
+
+@media only screen and (min-width: 1250px) {
+img {
+	-moz-transition:-moz-transform 0.5s ease-in; 
+	-webkit-transition:-webkit-transform 0.5s ease-in; 
+	-o-transition:-o-transform 0.5s ease-in;
+}
+img:active{
+	-moz-transform:scale(1.5); 
+	-webkit-transform:scale(1.5);
+	-o-transform:scale(1.5);
+}
+}
+
+@media only screen and (min-width: 1500px) {
+img {
+	-moz-transition:-moz-transform 0.5s ease-in; 
+	-webkit-transition:-webkit-transform 0.5s ease-in; 
+	-o-transition:-o-transform 0.5s ease-in;
+}
+img:active{
+	-moz-transform:scale(2); 
+	-webkit-transform:scale(2);
+	-o-transform:scale(2);
+}
+}
+</style>
+<article>
+  <div id="content" class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        
+          
+            <a href="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0011/MovilControlBlog.zip""><i class="fa fa-download fa-lg"></i>Download Code</a>
+          
+        
+        <p>This tutorial shows how to implement the moving control strategy for the heat equation in the presence of a memory term.</p>
+
+<p>The standard null controllability problem for the heat equation reads as follows</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\label{heatinterior}
+\begin{equation}
+\begin{cases}
+\begin{matrix}
+  u_t = \Delta u + f(x,t) \chi_{\omega} \ & \ x \in \Omega & t \in [0,T] \\
+  u(x,t) = 0    & x \in \partial \Omega  &  t \in [0,T] \\
+  u(x,0) = u_0  & x \in \Omega
+\end{matrix}
+\end{cases},
+\end{equation} %]]></script>
+
+<p>where $\Omega$ is a bounded domain, $u_0\in L^2(\Omega)$ and the control $f$ acts on the subdomain $\omega\subset\Omega$. The objective is to steer the system from $u_0$ to zero in time $T$,</p>
+
+<p>It is known that the null controllability of the heat equation holds in any positive time $T&gt;0$ and for any open control region $\omega$. Nevertheless, the situation changes when in the model appears a memory term:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\label{heatinterior_memory}
+\begin{equation}
+\begin{cases}
+\begin{matrix}
+  \displaystyle u_t = \Delta u + f(x,t) \chi_{\omega} + \int_0^t u(x,\tau) d\tau \ & \ x \in \Omega & t \in [0,T] \\
+  u(x,t) = 0    & x \in \partial \Omega  &  t \in [0,T] \\
+  u(x,0) = u_0  & x \in \Omega
+\end{matrix}
+\end{cases}
+\end{equation} %]]></script>
+
+<p>As a matter of fact, when the equation involes a memory term, it is impossible to achive null controllability in the classical sense, unless the control region coincides with the entire domain ($\omega=\Omega$).</p>
+
+<p>This fact can be easily seen when applying a LQR control on both systems (\ref{heatinterior}) and (\ref{heatinterior_memory}). In the former case (without memory) the minimum of the LQR functional is an optimal control stabilizing the dynamics (Video 1), whereas when the memory enters into the model this minimum leaves the system far from the equilibrium (Vdeo 2).</p>
+
+<hr />
+
+<table>
+    <tr>
+        <th>
+          <center>
+            <video controls="" width="90%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0011/LQR_InteriorPoint_Heat_Equation.mp4"> </video>
+          </center> 
+        </th>
+        <th>
+          <center>
+            <video controls="" width="90%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0011/LQR_InteriorPoint_Heat_Equation_with_memory.mp4"> </video>
+          </center> 
+        </th>
+    </tr>
+    <tr>
+        <th>
+          <center>
+              <b>Video 1:</b> LQR in the heat equation (Equation \ref{heatinterior})
+          </center> 
+        </th>
+        <th>
+          <center>
+              <b>Video 2:</b>  LQR in the heat equation with memory (Equation \ref{heatinterior_memory})
+          </center> 
+        </th>
+    </tr> 
+    <tr>
+        <td colspan="2">
+          <center>
+              We can see the time evolution of the two models with a control region, $\chi_{\omega}$, located in the position of the blue ellipsoid in the simulation. We observe that the LQR control is effective for the heat equation but not for the heat equation with memory.
+          </center> 
+        </td>
+    </tr> 
+</table>
+
+<p>To understand the reason behind the lack of null controllability for the memory-type equation (\ref{heatinterior_memory}), we can introduce the new variable</p>
+
+<script type="math/tex; mode=display">z(x,t) = \int_0^t u(x,\tau) d\tau \Rightarrow z_t(x,t) = u(x,t)</script>
+
+<p>In this way, (\ref{heatinterior_memory}) is transformed into a coupled PDE/ODE system:</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\label{heatinterior_memory_z}
+\begin{equation}
+\begin{cases}
+\begin{matrix}
+  u_t = \Delta u + f(x,t) \chi_{\omega} + z,  &     z_t = u        & x \in \Omega & t \in [0,T] \\
+  u(x,t) = 0,                        &  z(x,t) = 0   & x \in \partial \Omega  &  t \in [0,T] \\
+  u(x,0) = 0                      &  z(x,0) = 0   & x \in \Omega
+  \end{matrix}
+\end{cases}
+\end{equation} %]]></script>
+
+<p>In (\ref{heatinterior_memory_z}), the equation $z_t = u$ is an infinte-dimensional ODE which, since it has no diffusion term, introduces non-propagation phenomena in the system. The non propagating components corresponding to this ODE are unable to reach the control region $\omega$ and, therefore, cannot be controlled.</p>
+
+<p>A natural remedy to this issue is to operate with a moving control strategy. If the ODE components of the system cannot reach the control region $\omega$, then is the control region who needs to reach these components. Hence, our control region would be  function of the time variable, $\omega = \omega(t)$, and the corresponding model will be</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\label{heatinterior_memory_z_moving}
+\begin{equation}
+\begin{cases}
+\begin{matrix}
+  u_t = \Delta u + f(x,t) \chi_{\omega(t)} + z,  &     z_t = u        & x \in \Omega & t \in [0,T] \\
+  u(x,t) = 0,                        &  z(x,t) = 0   & x \in \partial \Omega  &  t \in [0,T] \\
+  u(x,0) = 0                      &  z(x,0) = 0   & x \in \Omega
+  \end{matrix}
+\end{cases}
+\end{equation} %]]></script>
+
+<p>This moving control strategy has been proposed and succesfully applied in several contributions of our team [1,2,3,4].</p>
+
+<p>Memory-type equations are one of the core topics of WP5 of the DyCon ERC project. An abridged presentation of this working package can be found at the following <a href="https://cmc.deusto.eus/dycon-working-package-5-memory-and-hybrid-pdeode-models">link</a>.</p>
+
+<h2 id="numerical-implementation-of-the-moving-control-strategy">Numerical implementation of the moving control strategy</h2>
+
+<p>We present here the numerical implementation of the moving control strategy for the memory-type heat equation (\ref{heatinterior_memory_z_moving}). All the simulations will be in $2D$.</p>
+
+<h3 id="step-1-construction-of-the-control-region">STEP 1: construction of the control region</h3>
+
+<p>The first step is to construct the moving control region $\omega(t)$, which requires to design the function $\chi_{\omega(t)}$. To this end, we made the assumption that the size and orientation of $\omega(t)$ do not change during the time interval $[0,T]$. Hence, once fixed the size and shape of the control region, we will obtain a function depending only on a point $x\in \Omega$.</p>
+
+<p>In this simulation, we create the control region as a square which moves in the domain $\Omega$. This square can be constructed with a function $W(x)$ defined as</p>
+
+<script type="math/tex; mode=display">W(x,a,b) = H(x-a) + H(x-b) \\  \{ a,b,x  \}\in \mathbb{R}, \quad a>b \\</script>
+
+<p>where $H(x)$ is the Heaviside function. Nevertheless, the function $W$ constructed in this way would be non-differentialbe at the points $x=a$ and $x=b$. This would represent a problem when implementing the gradient method to compute the control. To bypass this issue, in the definition of $W(x,a,b)$ we will use a smooth approximation of $H$ (See Figure 1).</p>
+
+<table>
+  <tr>
+    <th>
+      <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0011/WTHETA.png" width="65%" />
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <center><b>Figure 1</b>: Graphicla representation of $W(x,a,b)$</center>
+    </th>
+  </tr>
+</table>
+
+<p>Moreover, the generalization of this function to dimension two is immediate</p>
+
+<script type="math/tex; mode=display">W_{2D}(x,y,x_{min},x_{max},y_{min},y_{max}) = W(x,x_{min},x_{max})*W(x,y_{min},y_{max})</script>
+
+<p>In this way, given $(x_{min}, x_{max}, y_{min}, y_{max})$, we obtain the corresponding characteristic function which only depends on the position of a single point.</p>
+
+<h3 id="step-2-construction-of-the-dynamics">STEP 2: construction of the dynamics</h3>
+
+<p>Since $\chi_{\omega}$ can move and, moreover, we want to obtain the optimal trajectory for the control, we will incorporate in our system a moving particle whose position and velocity are denoted by $\textbf{d} = (d_x,d_y)$ and $\textbf{v} = (v_x,v_y)$, respectively (Video 3).</p>
+
+<table>
+  <tr>
+    <th>
+      <video controls="" width="100%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0011/BMatrix_Motion.mp4"> </video>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      <center><b>Video 3: Representación gráfica de</b>  $W_{2D}$</center>
+    </th>
+  </tr>
+</table>
+
+<p>Besides, we will add a control $\textbf{g}(t) = (g_x(t),g_y(t))$ which will act as an exterior force moving the subset $\chi_{\omega}$.</p>
+
+<p>In this way, our model takes the final form</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\label{heatinterior_memory_z_all}
+\begin{equation}
+\begin{cases}
+\begin{matrix}
+  u_t = \Delta u + f(x,t) \chi_{\omega(\textbf{d})} + z,  &     z_t = u        & x \in \Omega & t \in [0,T] \\
+  u(x,t) = 0,                        &  z(x,t) = 0   & x \in \partial \Omega  &  t \in [0,T] \\
+  u(x,0) = 0,                      &  z(x,0) = 0   & x \in \Omega \\
+    \dot{\textbf{d}} = \textbf{v} & \textbf{d}(0) = \textbf{d}_0    & t \in [0,T]\\
+  \dot{\textbf{v}} = \textbf{g}(t)  & \textbf{v}(0) = \textbf{v}_0  & t \in [0,T]\\
+  \end{matrix}
+\end{cases}
+\end{equation} %]]></script>
+
+<h3 id="step-3-optimal-control-problem">STEP 3: optimal control problem</h3>
+
+<p>Following a standard optimal control strategy, the control function for our memory-type equation will be computed throught the minimization problem</p>
+
+<script type="math/tex; mode=display">\min_{f(x,t),g(t)}  \|u(x,T)\|^2_{L^2(\Omega)} \\</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\text{subject to: }\quad \begin{cases}
+\begin{matrix}
+  u_t = \Delta u + f(x,t) \chi_{\omega(\textbf{d})} + z,  &     z_t = u        & x \in \Omega & t \in [0,T] \\
+  u(x,t) = 0,                        &  z(x,t) = 0   & x \in \partial \Omega  &  t \in [0,T] \\
+  u(x,0) = 0,                      &  z(x,0) = 0   & x \in \Omega \\
+    \dot{\textbf{d}} = \textbf{v} & \textbf{d}(0) = \textbf{d}_0    & t \in [0,T]\\
+  \dot{\textbf{v}} = \textbf{g}(t)  & \textbf{v}(0) = \textbf{v}_0  & t \in [0,T]\\
+  \end{matrix}
+\end{cases} %]]></script>
+
+<h2 id="simulations">Simulations</h2>
+
+<p>All the simulations in this tutorial have been performed using the DyCon Toolbox and CasADi. Since CasADi is incorporated into the DyCon toolbox, we can install it in the following way:</p>
+
+<div class="language-matlab highlighter-rouge"><pre class="highlight"><code><span class="nb">unzip</span><span class="p">(</span><span class="s1">'https://github.com/DeustoTech/DyCon-Computational-Platform/archive/master.zip'</span><span class="p">)</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">genpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">cd</span><span class="p">,</span><span class="s1">'DyCon-toolbox-master'</span><span class="p">))</span>
+<span class="n">StartDyconPlatform</span>
+</code></pre>
+</div>
+
+<p>We shall now write the discrete version of equation (\ref{heatinterior_memory_z_all}):</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\label{heatinterior_memory_z_all_discr}
+\begin{equation}
+\frac{d}{dt} \begin{bmatrix}\begin{array}{c|c}
+\textbf{U} \\
+\hline
+\textbf{Z} \\
+\hline
+\textbf{D} \\
+\hline
+\textbf{V} \\
+\end{array}
+\end{bmatrix}
+=
+\begin{bmatrix}\begin{array}{c|c|c}
+\mathcal{A} & \textbf{1} & \textbf{0} & \textbf{0} \\
+\hline
+\textbf{1} & \textbf{0}  & \textbf{0} & \textbf{0} \\
+\hline
+\textbf{0} & \textbf{0}  & \textbf{0} & \textbf{1} \\
+\hline
+\textbf{0} & \textbf{0}  & \textbf{0} & \textbf{0} \\
+\end{array}
+\end{bmatrix}
+%%
+\begin{bmatrix}\begin{array}{c|c}
+\textbf{U} \\
+\hline
+\textbf{Z} \\
+\hline
+\textbf{D} \\
+\hline
+\textbf{V} \\
+\end{array}
+\end{bmatrix}
++
+%%
+\begin{bmatrix}\begin{array}{c|c}
+\textbf{B}(\textbf{D})*\textbf{F}(t) \\
+\hline
+\textbf{0} \\
+\hline
+\textbf{0} \\
+\hline
+\textbf{G}(t) \\
+\end{array}
+\end{bmatrix}
+\end{equation} %]]></script>
+
+<p>Secondly, let us create the mesh variable</p>
+
+<div class="language-matlab highlighter-rouge"><pre class="highlight"><code><span class="c1">% Create the mesh variables</span>
+<span class="nb">clear</span><span class="p">;</span>
+<span class="n">Ns</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="n">Nt</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="n">xline</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Ns</span><span class="p">);</span>
+<span class="n">yline</span> <span class="o">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">Ns</span><span class="p">);</span>
+<span class="p">[</span><span class="n">xms</span><span class="p">,</span><span class="n">yms</span><span class="p">]</span> <span class="o">=</span> <span class="nb">meshgrid</span><span class="p">(</span><span class="n">xline</span><span class="p">,</span><span class="n">yline</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>and the matrix $A$ containing the $2D$ Laplacian and the ODE dynamics</p>
+
+<div class="language-matlab highlighter-rouge"><pre class="highlight"><code><span class="n">A</span>  <span class="o">=</span> <span class="n">FDLaplacial2D</span><span class="p">(</span><span class="n">xline</span><span class="p">,</span><span class="n">yline</span><span class="p">);</span>
+
+<span class="n">Atotal</span> <span class="o">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="p">);</span>
+<span class="c1">%</span>
+<span class="n">Atotal</span><span class="p">(</span> <span class="mi">1</span><span class="p">:</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span>  <span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span> <span class="p">)</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+<span class="c1">%</span>
+<span class="n">Atotal</span><span class="p">(</span> <span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span> <span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span>   <span class="p">,</span>   <span class="mi">1</span>    <span class="p">:</span>  <span class="n">Ns</span><span class="o">^</span><span class="mi">2</span>   <span class="p">)</span>  <span class="o">=</span>  <span class="nb">eye</span><span class="p">(</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">Atotal</span><span class="p">(</span>    <span class="mi">1</span>   <span class="p">:</span>  <span class="n">Ns</span><span class="o">^</span><span class="mi">2</span>    <span class="p">,</span> <span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span> <span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span>  <span class="p">)</span>  <span class="o">=</span>  <span class="mi">50</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="p">);</span> <span class="c1">% z = 50*y</span>
+
+<span class="n">RumbaMatrixDynamics</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">;</span> <span class="k">...</span>
+                       <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">;</span> <span class="k">...</span>
+                       <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">;</span> <span class="k">...</span>
+                       <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">];</span>
+
+<span class="n">Atotal</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="p">)</span> <span class="o">=</span> <span class="n">RumbaMatrixDynamics</span><span class="p">;</span>
+<span class="n">Atotal</span> <span class="o">=</span> <span class="nb">sparse</span><span class="p">(</span><span class="n">Atotal</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>Finally, we create the function $B(\textbf{d}) = B(x_d,y_d)$ for the dynamics of the moving control</p>
+<div class="language-matlab highlighter-rouge"><pre class="highlight"><code><span class="c1">%%</span>
+<span class="c1">% We create the B() function</span>
+<span class="n">xwidth</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+<span class="n">ywidth</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+<span class="n">B</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">xms</span><span class="p">,</span><span class="n">yms</span><span class="p">,</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">)</span> <span class="n">WinWP05</span><span class="p">(</span><span class="n">xms</span><span class="p">,</span><span class="n">xs</span><span class="p">,</span><span class="n">xwidth</span><span class="p">)</span><span class="o">.*</span><span class="n">WinWP05</span><span class="p">(</span><span class="n">yms</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">ywidth</span><span class="p">);</span>
+<span class="n">Bmatrix</span> <span class="o">=</span>  <span class="o">@</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">)</span> <span class="p">[</span><span class="nb">diag</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">B</span><span class="p">(</span><span class="n">xms</span><span class="p">,</span><span class="n">yms</span><span class="p">,</span><span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">),</span><span class="mi">1</span><span class="p">,</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="p">))</span> <span class="p">;</span><span class="nb">zeros</span><span class="p">(</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="p">)];</span>
+</code></pre>
+</div>
+
+<p>We now have everything we need to construct and solve the optimal control problem</p>
+
+<div class="language-matlab highlighter-rouge"><pre class="highlight"><code><span class="n">opti</span> <span class="o">=</span> <span class="n">casadi</span><span class="o">.</span><span class="n">Opti</span><span class="p">();</span>  <span class="c1">% CasADi optimization structure</span>
+
+<span class="c1">% ---- Input variables ---------</span>
+<span class="n">Ucas</span> <span class="o">=</span> <span class="n">opti</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="p">,</span><span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">% state trajectory</span>
+<span class="n">Fcas</span> <span class="o">=</span> <span class="n">opti</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="n">Ns</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>   <span class="c1">% control</span>
+
+<span class="c1">% ---- Dynamic constraints --------</span>
+<span class="n">dUdt</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="n">Atotal</span><span class="o">*</span><span class="n">u</span><span class="o">+</span> <span class="p">[</span><span class="n">Bmatrix</span><span class="p">(</span><span class="n">u</span><span class="p">(</span><span class="k">end</span><span class="o">-</span><span class="mi">3</span><span class="p">),</span><span class="n">u</span><span class="p">(</span><span class="k">end</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="p">;</span> <span class="k">...</span>
+                                         <span class="mi">0</span>                     <span class="p">;</span> <span class="k">...</span>
+                                         <span class="mi">0</span>                     <span class="p">;</span> <span class="k">...</span>
+                                     <span class="n">f</span><span class="p">(</span><span class="k">end</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>                  <span class="p">;</span> <span class="k">...</span>
+                                     <span class="n">f</span><span class="p">(</span><span class="k">end</span><span class="p">)</span>                    <span class="p">];</span> 
+
+<span class="c1">% -----Euler backward method-------</span>
+<span class="k">for</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="n">Nt</span> <span class="c1">% loop over control intervals</span>
+   <span class="n">y_next</span> <span class="o">=</span> <span class="n">Ucas</span><span class="p">(:,</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">T</span><span class="p">/</span><span class="n">Nt</span><span class="p">)</span><span class="o">*</span><span class="n">dUdt</span><span class="p">(</span><span class="n">Ucas</span><span class="p">(:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">dUdt</span><span class="p">(:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span> 
+   <span class="n">opti</span><span class="o">.</span><span class="n">subject_to</span><span class="p">(</span><span class="n">Ucas</span><span class="p">(:,</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="n">y_next</span><span class="p">);</span> <span class="c1">% close the gaps</span>
+<span class="k">end</span>
+
+<span class="c1">% ---- State constraints --------</span>
+<span class="n">opti</span><span class="o">.</span><span class="n">subject_to</span><span class="p">(</span><span class="n">Ucas</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="o">==</span><span class="p">[</span><span class="n">Y0</span> <span class="p">;</span> <span class="mf">0.7</span> <span class="p">;</span> <span class="mf">0.7</span><span class="p">;</span> <span class="o">-</span><span class="mf">1.5</span> <span class="p">;</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">]);</span>
+
+<span class="c1">% ---- Optimization objective  ----------</span>
+<span class="n">Cost</span> <span class="o">=</span> <span class="p">(</span><span class="n">Ucas</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">'*</span><span class="p">(</span><span class="n">Ucas</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="k">end</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span><span class="n">Nt</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+
+<span class="n">opti</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">Cost</span><span class="p">);</span> <span class="c1">% minimizing L2 at the final time</span>
+
+<span class="c1">% ---- initial guesses for solver ---</span>
+<span class="n">opti</span><span class="o">.</span><span class="n">set_initial</span><span class="p">(</span><span class="n">Ucas</span><span class="p">,</span> <span class="n">Unum_free</span><span class="p">);</span>
+<span class="n">opti</span><span class="o">.</span><span class="n">set_initial</span><span class="p">(</span><span class="n">Fcas</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">% ---- solve NLP              ------</span>
+<span class="n">p_opts</span> <span class="o">=</span> <span class="nb">struct</span><span class="p">(</span><span class="s1">'expand'</span><span class="p">,</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">s_opts</span> <span class="o">=</span> <span class="nb">struct</span><span class="p">(</span><span class="s1">'acceptable_tol'</span><span class="p">,</span><span class="mf">1e-4</span><span class="p">,</span><span class="s1">'constr_viol_tol'</span><span class="p">,</span><span class="mf">1e-3</span><span class="p">,</span><span class="s1">'compl_inf_tol'</span><span class="p">,</span><span class="mf">1e-3</span><span class="p">);</span>
+<span class="n">opti</span><span class="o">.</span><span class="n">solver</span><span class="p">(</span><span class="s1">'ipopt'</span><span class="p">,</span><span class="n">p_opts</span><span class="p">,</span><span class="n">s_opts</span><span class="p">);</span> <span class="c1">% set numerical backend</span>
+<span class="nb">tic</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">opti</span><span class="o">.</span><span class="n">solve</span><span class="p">();</span>   <span class="c1">% actual solve</span>
+<span class="nb">toc</span>
+</code></pre>
+</div>
+
+<p>The following video shows the results of our simulations, which allowed to compute an effective moving control steering the dynamics to rest at time $T$.</p>
+
+<table>
+<tr>
+  <th>
+    <center>
+      <video controls="" width="90%" src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0011/MovilControl.mp4"> </video>
+    </center>
+  </th>
+</tr>
+<tr>
+<th>
+<center><b>Video 3</b></center>
+</th>
+</tr>
+</table>
+
+<h2 id="bibliography">Bibliography</h2>
+
+<p>[1] U. Biccari and S. Micu, <em>Null-controllability properties of the wave equation with a second order memory term</em>, J. Differential Equations, 267(2), 2019, 1376-1422.</p>
+
+<p>[2] U. Biccari and M. Warma, <em>Null-controllability properties of a fractional wave equation with a memory term</em>, Evol. Eq. Control The., 9(2), 2020, 399-430.</p>
+
+<p>[3] F. W. Chaves-Silva, X. Zhang and E. Zuazua, <em>Controllability of evolution equations with memory</em>, SIAM J. Control Optim., 55(4), 2017, 2437–2459.</p>
+
+<p>[4] Q. Lü, X. Zhang and E. Zuazua, <em>Null controllability for wave equations with memory</em>, J. Math. Pures Appl., 108 (4), 2017, 500-531.</p>
+
+        <hr>
+      </div>
+    </div>
+  </div>
+  <div id="content" class="container">
+
+  <div class="relatedPosts">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+    <h2>Related Posts</h2>
+    
+    
+    
+    
+    
+
+    
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+          <div>
+          
+            <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0014/twiterFractional.gif">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp05/P0014" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Simulation of Fractional Heat Equation </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this tutorial, we show the simulation of heat fractional equation
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/UmbertoB">Umberto Biccari</a>
+          
+          - 01 February 2020
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-success btn-sm" style="margin-left: auto;">DyCon Toolbox</button>
+    
+    </div>
+
+  </div>
+</div>
+
+
+          </div>
+          
+          
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+          <div>
+          
+            <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0013/avatar.gif">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp05/P0013" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Optimal Control of the Fokker-Planck Equation with CasADi </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this tutorial, we present an optimal control problem related to the Fokker-Planck equation.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/JorgeM">Jorge Mallo</a>
+          
+          - 19 December 2019
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-danger btn-sm" style="margin-left: auto;">MATLAB-CasADi</button>
+    
+    </div>
+
+  </div>
+</div>
+
+
+          </div>
+          
+          
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+          <div>
+          
+            <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0012/v1.png">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp05/P0012" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Numerical simulation of nonlinear Population Dynamics Structuring by age and Spatial diffusion </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this tutorial, we propose the Hum method to approximate numerically the control in a null controllability problem for a non linear population dynamics model structuring in age and spatial diffusion.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/YacoubaS">Yacouba Simpore</a>
+          
+          - 30 October 2019
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-danger btn-sm" style="margin-left: auto;">MATLAB-CasADi</button>
+    
+    </div>
+
+  </div>
+</div>
+
+
+          </div>
+          
+          
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+    
+      
+    
+        
+        
+    
+        
+    
+        
+          <div>
+          
+            <div class="post-preview shadowbox">
+  <div class="post-avatar-wp">
+  
+    <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP05/P0010/Fig06.jpg">
+  
+  </div>
+  <div class="post-info">
+    <a href="/DyCon-Blog/tutorial/wp05/P0010" class="display-block">
+      <h4 class="post-preview-title ellipsis-two-lines"> Controllability of a Class of Infinite Dimensional Systems with Age Structure </h4>
+    </a>
+
+    <div class="post-preview-subtitle ellipsis-two-lines">
+      In this tutorial,  we investigate the linear infinite dimensional system obtained by implementing an age structure to a given  linear dynamical system. We show that if the initial system is null controllable in a time small enough, then the age structured system is also null controllable in a time depending on the various involved parameters.
+    </div>
+
+    <div style="display: flex;margin-top: 10px;">
+        <div class="post-preview-authors ellipsis-one-line">
+          Author:
+          
+          
+            
+              <a href="https://deustotech.github.io/DyCon-Blog/author/DebayanM">Debayan Maity</a>
+          
+          - 07 June 2019
+        </div>
+        
+        <button onclick="window.location.href='https://deustotech.github.io/DyCon-Blog/projects/search.bycode'" type="button" class="btn btn-primary btn-sm" style="margin-left: auto;">MATLAB</button>
+    
+    </div>
+
+  </div>
+</div>
+
+
+          </div>
+          
+          
+            
+    </div>
+  </div> 
+    </div>
+  </div>
+
+</article>
+<hr>
+
+    <!-- Footer -->
+<footer>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <ul class="list-inline text-center">
+        <li style="margin-right: 50px;">
+          <img style="width: 250px;" src="/DyCon-Blog/img/logos/logo_DyCon.png " alt="">
+        </li>
+        <li style="padding-bottom: 5px;">
+          <img style="width: 230px;" src="/DyCon-Blog/img/logos/logo_CCM_subDerecha_v002.png " alt="">
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

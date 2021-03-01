@@ -1,0 +1,24 @@
+casadi:
+  name: MATLAB-CasADi
+  color: btn-danger
+dycon-toolbox: 
+  name: DyCon Toolbox
+  color: btn-success
+MATLAB:
+  name: MATLAB
+  color: btn-primary
+AMPL:
+  name: AMPL Ipopt
+  color: btn-dark
+
+OpenFOAM:
+  name: Open Foam
+  color: btn btn-secondary
+
+fenics:
+  name: fenics
+  color: btn btn-secondary
+
+python: 
+  name: python
+  color: btn btn-secondary

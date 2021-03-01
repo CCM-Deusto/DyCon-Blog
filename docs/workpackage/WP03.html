@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Welcome to the web interface of DyCon Toolbox, the computational platform developed within the <a href='https://cmc.deusto.eus/dycon/' target='_blank'>ERC DyCon - Dynamic Control</a> project.">
+	<link rel='shortcut icon' type='image/png' href='/DyCon-Blog/favicon.png' />
+
+  <title>
+    WP03 - DyCon Blog
+    
+  </title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="canonical" href="https://deustotech.github.io/DyCon-Blog/workpackage/WP03">
+
+  <!-- Bootstrap Core CSS -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/clean-blog.css">
+
+   <!-- Adjust Colors -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/colorscheme.css">
+
+  <!-- Pygments Github CSS -->
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/syntax.css">
+
+  <link rel="stylesheet" href="https://deustotech.github.io/DyCon-Blog/css/google-search.css">
+
+
+  
+  <script src="https://deustotech.github.io/DyCon-Blog/lib/js/libgif.js "></script>
+  <script src="https://deustotech.github.io/DyCon-Blog/lib/js/rubbable.js "></script>
+
+
+  <!-- Google Fonts Raleway -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+	<!-- MathJax -->
+  <script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    },
+		TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      },
+      extensions: ["AMSmath.js", "AMSsymbols.js"],
+      Macros:{
+        norm: ["|| #1 ||",1],
+        abs: ["| #1 |",1],
+        hdots: "...",
+        RR: "\\mathbb{R}",
+        ffl: ["(d_x^2)^{#1}",1],
+        ccs: "c_{1,s}",
+        kernel: ["|x-y|^{#1}",1],
+        ue: ["#1^{\\epsilon}",1]
+      }
+    },
+    CommonHTML: {
+      styles: {
+        "@font-face /* vec */ ": {
+          "font-family": "MJX-VEC",
+          src: [
+            "url(data:application/x-font-woff;charset=utf-8;base64,",
+            "d09GRgABAAAAAARMAA0AAAAABiQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRlRNAAAEMAAAABwA",
+            "AAAccRGLqUdERUYAAAQMAAAAJAAAACgANAAmT1MvMgAAAaAAAABJAAAAYFc5gfFjbWFwAAACAAAA",
+            "AEYAAAFKQxjlbWdhc3AAAAQEAAAACAAAAAj//wADZ2x5ZgAAAlQAAACUAAAAlIQU9HBoZWFkAAAB",
+            "MAAAADAAAAA2C748e2hoZWEAAAFgAAAAHgAAACQFXQDqaG10eAAAAewAAAAUAAAAFAYvAE9sb2Nh",
+            "AAACSAAAAAwAAAAMACgAcm1heHAAAAGAAAAAHQAAACAASQAmbmFtZQAAAugAAADxAAAB5uwlD0hw",
+            "b3N0AAAD3AAAACgAAAA34M9aEXjaY2BkYGAA4uOfgq7G89t8ZeBmfgEUYbga+icNTssClVxnOgXk",
+            "cjAwgUQBdqEMW3jaY2BkYGBu+feBgYHxCwMQMF5nYGRABawAcaQESgAAeNpjYGRgYGBlUGZgYgAB",
+            "EMnIABJzAPMZAAZZAHAAAAB42mNgYSxn/MLAysDA1MW0h4GBoQdCMz5gMGRkAooysDEzwAAjECvA",
+            "OAFprikMBxgUFCcxt/z7wMDA3MIoAFUDAwoMjACD8Qv5AAAAAfQAMgAAAAABTQAAAPoAAAH0AB14",
+            "2mNgYGBmgGAZBkYGEHAB8hjBfBYGDSDNBqQZGZgYFBQn/f8P5IPp/4/vFUHVAwEjGwOcw8gEJJgY",
+            "UAEjxIrhDACLGwmnAAAAAAAUABQAFAAUAEoAAgAyAAABwgIVAAMABwAAMxEhESUhESEyAZD+ogEs",
+            "/tQCFf3rMgGxAAEAHQIEAdcCygAiAAABNDYzMhcWFxYXFhUUBgcGBw4DIyImNTQ3IycmNTQ3ISYB",
+            "eQsJBwUFBQofCwYLKyACBwMGBAcNL6urDQ0BZxgCtggMBQQPJRQHCwkGBhYpAgkCAgsJEygBCQoH",
+            "DSYAeNqVjrGKwkAURe/EGBBUrG12CishMrFQcDuLsAi26YMOmsIMxAh+hN8i+CF+gd+y4B3zttjC",
+            "woHhncu7774HoI8rFP5eIKzQw5dwgAjfwi2McBEO6bkLtzHAr3CEnhrTqcKOpDasMCQ1HKCLWLiF",
+            "HyyFQ3puwm1oPIQjDFXfR62Ro8YeK9YzMlhsqB0qtvJ6v8rPmd3Uzkv2tihwwoHCbosTa0pryYH0",
+            "NbKjRWPB/z626Se8dsY/hSHPGeTKOnXVzuqF/reYOoln8dQk80+u9b0KR97rD9Rc4xdNXtVQI7PV",
+            "sXClNiaZGGP0B+FPMN1KMAAAAHjaY2BiAIP/zQxGDNgAKxAzMjAxMDMycSUWFeWXF2WmZ5QAAGh5",
+            "BhgAAAAB//8AAnjaY2BkYGDgA2IJBgUgycTAyMDMwAIkWcA8BgZGCAYACgIAWwAAAAEAAAAAxmW3",
+            "ygAAAADVVeemAAAAANVV7Dg=) format('woff')"
+          ].join('')
+        },
+        ".MJX-VEC": {
+          "font-family": "MJX-VEC"
+        }
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook("CommonHTML Jax Ready", function () {
+    var MML = MathJax.ElementJax.mml;
+    var fixCombiningChar = MML.mo.prototype.CHTMLfixCombiningChar;
+    MML.mo.Augment({
+      CHTMLfixCombiningChar: function (node) {
+        if (node.textContent === '\u20D7') {
+          //
+          //  Safari makes combining characters into non-combining ones when
+          //  they don't have anything to combine with; replace \vec arrow
+          //  with a non-combining one so all browsers get the same thing
+          //
+          node = node.firstChild;
+          node.firstChild.nodeValue = "\u2192";
+          node.className = "mjx-char MJX-VEC";
+          node.style.marginLeft = "-.5em";
+          node.style.paddingTop = ".45em";
+        } else {
+          fixCombiningChar.call(this,node);
+        }
+      }
+    });
+  });
+	</script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js" type="text/javascript"></script>-->
+
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+  <script src="https://deustotech.github.io/DyCon-Blog/js/clean-blog.min.js "></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128123935-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-128123935-3');
+  </script>
+  <!-- End Google Analytics -->
+
+
+
+  <!-- marKdown editor -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- <a class="navbar-brand" href="/DyCon-Blog/">
+                 <img src="https://deustotech.github.io//DyCon-Blog//assets/logo_DyCon.png">
+            </a> -->
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/DyCon-Blog/">Home</a>
+                </li>
+                
+                
+                    
+                        
+                    
+                                   
+                <li>
+                    <a href="/DyCon-Blog/projects/posts">Documentation</a>
+                </li>
+                
+                    
+                
+                    
+                <li>
+                        <a href="https://deustotech.github.io/DyCon-Blog/projects/search.byWP">Sitemap</a>
+                </li>
+                <li>
+                        <a href="http://cmc.deusto.eus/">Chair of Computational Mathematics</a>
+                </li>
+                
+            </ul>
+
+        
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Extraemos el json topic segun el titulo de post, para de esta forma tener todas las propiedades de topic -->
+
+<header class="intro-header">
+  <div class="container" style="padding-top: 50px;">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="post-heading">
+        <h2>
+          <small class="light-grey">
+            <a href="https://deustotech.github.io//DyCon-Blog/projects/posts">Work Packages</a>	&#8827; Control under constraints
+          </small>
+        </h2>
+        
+        <h1>WP3: Control under constraints</h1>
+        
+      </div>
+		</div>
+	</div>
+</header>
+<hr>
+<!-- Post Content -->
+<style>
+img {
+	display:block;
+	max-width:  100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media only screen and (min-width: 1000px) {
+img {
+	-moz-transition:-moz-transform 0.5s ease-in; 
+	-webkit-transition:-webkit-transform 0.5s ease-in; 
+	-o-transition:-o-transform 0.5s ease-in;
+}
+img:active{
+	-moz-transform:scale(1.2); 
+	-webkit-transform:scale(1.2);
+	-o-transform:scale(1.2);
+}
+}
+
+@media only screen and (min-width: 1250px) {
+img {
+	-moz-transition:-moz-transform 0.5s ease-in; 
+	-webkit-transition:-webkit-transform 0.5s ease-in; 
+	-o-transition:-o-transform 0.5s ease-in;
+}
+img:active{
+	-moz-transform:scale(1.5); 
+	-webkit-transform:scale(1.5);
+	-o-transform:scale(1.5);
+}
+}
+
+@media only screen and (min-width: 1500px) {
+img {
+	-moz-transition:-moz-transform 0.5s ease-in; 
+	-webkit-transition:-webkit-transform 0.5s ease-in; 
+	-o-transition:-o-transform 0.5s ease-in;
+}
+img:active{
+	-moz-transform:scale(2); 
+	-webkit-transform:scale(2);
+	-o-transform:scale(2);
+}
+}
+</style>
+<article>
+  <div id="content" class="container">
+    <div class="col-md-10 col-md-offset-1">
+      <div><p>Most of the existing theory of controllability for PDEs has been developed in the absence of <strong>constraints on the controls and states</strong>. Thus, in practice, available results do not guarantee that controlled trajectories fulfil the physical constraints of the processes under consideration. Nevertheless, these constraints, often formulated as unilateral bounds on the control and/or controlled state, play a fundamental role in many applications. This is particularly the case in the context of <strong>diffusion processes</strong> (heat conduction, mathematical biology and population dynamics, etc.) which enjoy the property of <strong>positivity preserving</strong> of the free dynamics, in the absence of control.</p> <p>Recent results by our team allow proving, in a number of relevant situations, including linear and semilinear heat equations, that systems can be controlled under positivity constraints on the control when the control time is long enough. Furthermore, there is a minimal time for this property to hold. In other words, constrained controllability can't be achieved if the time horizon is too short.</p> <p>Our numerical experiments also show that, often, minimal time controls develop a sparsity pattern that is not yet fully understood. </p></div>
+      <h4>Available tutorials:</h4>
+      <!-- Realizamos la query  -->
+      
+      
+        <div class="post-preview shadowbox">
+          <div class="post-avatar-wp">
+          
+          <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0008/figures/staircase_perturbed.png">
+          
+          </div>
+          <div class="post-info">
+            <a href="/DyCon-Blog/tutorial/wp03/P0008" class="display-block">
+              <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints - Heterogeneous setting: Gene-flow. </h4>
+            </a>
+            <div class="post-preview-subtitle ellipsis-two-lines">
+              This tutorial is part of the control under state constraints. We will present the main features regarding the controllability of bistable reaction-diffusion equations with heterogeneous drifts.
+            </div>
+            <div class="post-preview-authors ellipsis-one-line">
+              Authors:
+              
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>,
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/IdrissM">Idriss Mazari</a>
+              
+              - 19 April 2020
+            </div>
+          </div>
+        </div>
+      
+        <div class="post-preview shadowbox">
+          <div class="post-avatar-wp">
+          
+          <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0009/figures/ContrState-4.png">
+          
+          </div>
+          <div class="post-info">
+            <a href="/DyCon-Blog/tutorial/wp03/P0009" class="display-block">
+              <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints - Numerical exploration of controls </h4>
+            </a>
+            <div class="post-preview-subtitle ellipsis-two-lines">
+              This tutorial is part of the control under state constraints. We will simulate different control strategies to the same target by minimizing different functionals.
+            </div>
+            <div class="post-preview-authors ellipsis-one-line">
+              Author:
+              
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>
+              
+              - 04 April 2020
+            </div>
+          </div>
+        </div>
+      
+        <div class="post-preview shadowbox">
+          <div class="post-avatar-wp">
+          
+          <img src="https://deustotech.github.io/DyCon-Blog//assets/imgs/WP03/P0005/figures/completepath02L12-1.png">
+          
+          </div>
+          <div class="post-info">
+            <a href="/DyCon-Blog/tutorial/wp03/P0005" class="display-block">
+              <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints - Application of the staircase method </h4>
+            </a>
+            <div class="post-preview-subtitle ellipsis-two-lines">
+              In this tutorial, we will present how to generate admissible paths of steady states for the homogeneous reaction-diffusion equation
+            </div>
+            <div class="post-preview-authors ellipsis-one-line">
+              Author:
+              
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>
+              
+              - 03 April 2020
+            </div>
+          </div>
+        </div>
+      
+        <div class="post-preview shadowbox">
+          <div class="post-avatar-wp">
+          
+          <img src="https://deustotech.github.io/DyCon-Blog//assets/imgs/WP03/P0006/figures/ellipticL20DEF-1.png">
+          
+          </div>
+          <div class="post-info">
+            <a href="/DyCon-Blog/tutorial/wp03/P0006" class="display-block">
+              <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints - Barriers </h4>
+            </a>
+            <div class="post-preview-subtitle ellipsis-two-lines">
+              This tutorial is part of the control under state constraints. We will show how obstructions to the state constraint controllability can appear.
+            </div>
+            <div class="post-preview-authors ellipsis-one-line">
+              Author:
+              
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>
+              
+              - 31 March 2020
+            </div>
+          </div>
+        </div>
+      
+        <div class="post-preview shadowbox">
+          <div class="post-avatar-wp">
+          
+          <img src="https://deustotech.github.io/DyCon-Blog//assets/imgs/WP03/P0009/figures/ContrState-8.png">
+          
+          </div>
+          <div class="post-info">
+            <a href="/DyCon-Blog/tutorial/wp03/P0007" class="display-block">
+              <h4 class="post-preview-title ellipsis-two-lines"> Control of reaction-diffusion under state constraints </h4>
+            </a>
+            <div class="post-preview-subtitle ellipsis-two-lines">
+              Usually, the unknowns in  reaction-diffusion models are positive by nature. Therefore, for application purposes, any control strategy proposed should preserve this positivity. This group of tutorials is devoted to the understanding of phenomena and techniques arising in reaction-diffusion control problems when  state constraints are present.
+            </div>
+            <div class="post-preview-authors ellipsis-one-line">
+              Author:
+              
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/DomenecR">Domenec Ruiz</a>
+              
+              - 30 March 2020
+            </div>
+          </div>
+        </div>
+      
+        <div class="post-preview shadowbox">
+          <div class="post-avatar-wp">
+          
+          <img src="https://deustotech.github.io/DyCon-Blog//assets/imgs/WP03/P0004/terrain_rotate.gif">
+          
+          </div>
+          <div class="post-info">
+            <a href="/DyCon-Blog/tutorial/wp03/P0004" class="display-block">
+              <h4 class="post-preview-title ellipsis-two-lines"> Analysis, numerics and control for the obstacle problem </h4>
+            </a>
+            <div class="post-preview-subtitle ellipsis-two-lines">
+              In this tutorial, we will present and elaborate an optimal control strategy for the obstacle problem in two space dimensions using Python's FEniCS toolbox. Different meshes and obstacles are considered.
+            </div>
+            <div class="post-preview-authors ellipsis-one-line">
+              Author:
+              
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/BorjanG">Borjan Geshkovski</a>
+              
+              - 08 July 2019
+            </div>
+          </div>
+        </div>
+      
+        <div class="post-preview shadowbox">
+          <div class="post-avatar-wp">
+          
+          <img src="https://deustotech.github.io/DyCon-Blog/assets/imgs/WP03/P0003/deltas.png">
+          
+          </div>
+          <div class="post-info">
+            <a href="/DyCon-Blog/tutorial/wp03/P0003" class="display-block">
+              <h4 class="post-preview-title ellipsis-two-lines"> Controllability of the one-dimensional fractional heat equation under positivity constraints </h4>
+            </a>
+            <div class="post-preview-subtitle ellipsis-two-lines">
+              We analyze the controllability properties under positivity constraints on the control or the state of a one-dimensional heat equation involving the fractional Laplacian $(-\Delta)^s$ ($0 < s < 1 $) on the interval $(-1,1)$. We prove the existence of a minimal (strictly positive) time $T_{\rm min}$ such that the fractional heat dynamics can be controlled from any initial datum in $L^2(-1,1)$ to a positive trajectory through the action of a positive control, when $s>1/2$. Moreover, we show that in this minimal time constrained controllability is achieved by means of a control that belongs to a certain space of Radon measures. We also give some numerical simulations that confirm our theoretical results.
+            </div>
+            <div class="post-preview-authors ellipsis-one-line">
+              Author:
+              
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/UmbertoB">Umberto Biccari</a>
+              
+              - 31 May 2019
+            </div>
+          </div>
+        </div>
+      
+        <div class="post-preview shadowbox">
+          <div class="post-avatar-wp">
+          
+          <img src="https://cmc.deusto.eus/wp-content/uploads/2018/03/1209075.jpg">
+          
+          </div>
+          <div class="post-info">
+            <a href="/DyCon-Blog/tutorial/wp03/P0002" class="display-block">
+              <h4 class="post-preview-title ellipsis-two-lines"> Control of the semi-discrete 1D heat equation under nonnegative control constraint </h4>
+            </a>
+            <div class="post-preview-subtitle ellipsis-two-lines">
+              Using IpOpt to get the time-optimal nonnegative control of a semi-discrete 1D heat equation
+            </div>
+            <div class="post-preview-authors ellipsis-one-line">
+              Authors:
+              
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/JeromeL">Jérôme Lohéac</a>,
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/EmmanuelT">Emmanuel Trélat</a>,
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/EnriqueZ">Enrique Zuazua</a>
+              
+              - 05 March 2018
+            </div>
+          </div>
+        </div>
+      
+        <div class="post-preview shadowbox">
+          <div class="post-avatar-wp">
+          
+          <img src="https://cmc.deusto.eus/wp-content/uploads/2017/03/y1N0.jpg">
+          
+          </div>
+          <div class="post-info">
+            <a href="/DyCon-Blog/tutorial/wp03/P0001" class="display-block">
+              <h4 class="post-preview-title ellipsis-two-lines"> IpOpt and AMPL use to solve time optimal control problems </h4>
+            </a>
+            <div class="post-preview-subtitle ellipsis-two-lines">
+              How to use IpOpt to solve time optimal control problems
+            </div>
+            <div class="post-preview-authors ellipsis-one-line">
+              Authors:
+              
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/JeromeL">Jérôme Lohéac</a>,
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/EmmanuelT">Emmanuel Trélat</a>,
+              
+                
+                  <a href="https://deustotech.github.io/DyCon-Blog/author/EnriqueZ">Enrique Zuazua</a>
+              
+              - 05 August 2017
+            </div>
+          </div>
+        </div>
+      
+      <h3 class="see-more"><a href="https://deustotech.github.io/DyCon-Blog/projects/posts">Navigate back to post list</a></h3>
+    </div>
+  </div>
+</article>
+
+    <!-- Footer -->
+<footer>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <ul class="list-inline text-center">
+        <li style="margin-right: 50px;">
+          <img style="width: 250px;" src="/DyCon-Blog/img/logos/logo_DyCon.png " alt="">
+        </li>
+        <li style="padding-bottom: 5px;">
+          <img style="width: 230px;" src="/DyCon-Blog/img/logos/logo_CCM_subDerecha_v002.png " alt="">
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
